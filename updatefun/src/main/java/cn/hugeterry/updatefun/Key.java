@@ -7,8 +7,10 @@ import android.content.Context;
  * Date: 16/2/22 03:20
  */
 public class Key {
-    public static String UPDATEURL  = "http://api.fir.im/apps/latest/573ecefa748aac36f4000007?api_token=70804bab6b69e63cab0ae3346d92c139";
+    public static String API_TOKEN = "";
+    public static String RELEASEID = "";
+    public static String UPDATEURL = "http://api.fir.im/apps/latest/" + RELEASEID + "?api_token=" + API_TOKEN;
+
     public static Context FROMACTIVITY = null;
     public static int TOShowDownloadDialog = 0;
-
 }
