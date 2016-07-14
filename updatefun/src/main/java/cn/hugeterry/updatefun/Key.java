@@ -9,5 +9,6 @@ import android.content.Context;
 public class Key {
     public static String UPDATEURL  = "http://api.fir.im/apps/latest/573ecefa748aac36f4000007?api_token=70804bab6b69e63cab0ae3346d92c139";
     public static Context FROMACTIVITY = null;
+    public static int TOShowDownloadDialog = 0;
 
 }

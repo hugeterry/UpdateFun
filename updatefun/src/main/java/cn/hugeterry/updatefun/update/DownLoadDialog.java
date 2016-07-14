@@ -87,6 +87,7 @@ public class DownLoadDialog extends Activity {
                 Intent intent = new Intent(DownLoadDialog.this,
                         mContext.getClass());
                 setResult(3, intent);
+                Key.TOShowDownloadDialog = 1;
                 finish();
                 interceptFlag = true;
             }

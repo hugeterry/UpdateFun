@@ -29,7 +29,7 @@ public class UpdateFunGO {
             switch (msg.arg1) {
                 case 1:
                     // 弹出提示更新对话框
-                    showNoticeDialog();
+                    showNoticeDialog(context);
                     break;
                 default:
                     break;
@@ -81,31 +81,28 @@ public class UpdateFunGO {
     public UpdateFunGO(Context context) {
         this.context = context;
         Key.FROMACTIVITY = context;
-        Thread thread_update = new Thread(new MyRunnable_update());
-        thread_update.start();
+        if (Key.TOShowDownloadDialog == 0) {
+            Thread thread_update = new Thread(new MyRunnable_update());
+            thread_update.start();
+        }
     }
 
-    private void showNoticeDialog() {
+    public static void showNoticeDialog(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, UpdateDialog.class);
         ((Activity) context).startActivityForResult(intent, 100);
     }
 
-    private void showDownloadDialog() {
+    public static void showDownloadDialog(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, DownLoadDialog.class);
-        System.out.println(apkUrl);
         ((Activity) context).startActivityForResult(intent, 0);
     }
 
-    // 获取对话框的返回值
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode) {
-            case 2:
-                showDownloadDialog();
-                break;
-            default:
-                break;
+    public static void onResume(Context context) {
+        if (Key.TOShowDownloadDialog == 2) {
+            showDownloadDialog(context);
         }
     }
+
 }

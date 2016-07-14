@@ -40,6 +40,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(2, intent);
+                Key.TOShowDownloadDialog = 2;
                 finish();
 
             }
@@ -51,6 +52,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(1, intent);
+                Key.TOShowDownloadDialog = 1;
                 finish();
             }
         });
