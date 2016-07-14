@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_card"
+        android:padding="25dp">
+
+        <TextView
+            android:id="@+id/updatedialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="检测到新版本，是否现在更新？"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/updatedialog_text_changelog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updatedialog_text"
+            android:layout_margin="10dp"
+            android:textSize="14sp"
+            tools:text="更新日志" />
+
+        <LinearLayout
+            android:id="@+id/updatedialog_btn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/updatedialog_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:text="马上更新" />
+
+            <TextView
+                android:id="@+id/updatedialog_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:padding="10dp"
+                android:text="以后再说" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout> 

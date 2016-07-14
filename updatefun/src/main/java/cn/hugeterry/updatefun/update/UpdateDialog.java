@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import us.xingkong.xingpostcard.Activity.MainActivity;
-import us.xingkong.xingpostcard.R;
+import cn.hugeterry.updatefun.R;
 
 
 public class UpdateDialog extends Activity {
