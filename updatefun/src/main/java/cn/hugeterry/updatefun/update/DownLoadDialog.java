@@ -21,7 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+import cn.hugeterry.updatefun.R;
 
 
 public class DownLoadDialog extends Activity {
