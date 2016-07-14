@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.hugeterry.updatefun.Key;
+
 
 public class Update extends Thread {
 
@@ -17,7 +19,7 @@ public class Update extends Thread {
     public String changelog;
     public String version;
     public String up_url;
-    private String url = cn.hugeterry.updatefun.Key.UPDATEURL;
+    private String url = Key.UPDATEURL;
 
     public Update() {
 

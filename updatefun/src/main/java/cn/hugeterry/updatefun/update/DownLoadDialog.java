@@ -21,18 +21,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.hugeterry.updatefun.Key;
 import cn.hugeterry.updatefun.R;
 
 
 public class DownLoadDialog extends Activity {
     ImageView close;
-    private Context mContext;
+    private Context mContext= Key.FROMACTIVITY;
 
     // 返回的安装包url
     private String apkUrl;
 
     /* 下载包安装路径 */
-    private static final String savePath = "/sdcard/starcard/";
+    private static final String savePath = "/sdcard/updateFun/";
 
     private static final String saveFileName = savePath + "xingpostcard.apk";
 
@@ -84,7 +85,7 @@ public class DownLoadDialog extends Activity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(DownLoadDialog.this,
-                        MainActivity.class);
+                        mContext.getClass());
                 setResult(3, intent);
                 finish();
                 interceptFlag = true;
