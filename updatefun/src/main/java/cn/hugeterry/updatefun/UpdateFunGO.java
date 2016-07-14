@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import cn.hugeterry.updatefun.update.DownLoadDialog;
 import cn.hugeterry.updatefun.update.Update;
@@ -80,8 +77,8 @@ public class UpdateFunGO {
 
     public UpdateFunGO(Context context) {
         this.context = context;
-        Key.FROMACTIVITY = context;
-        if (Key.TOShowDownloadDialog == 0) {
+        UpdateKey.FROMACTIVITY = context;
+        if (UpdateKey.TOShowDownloadDialog == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
@@ -100,7 +97,7 @@ public class UpdateFunGO {
     }
 
     public static void onResume(Context context) {
-        if (Key.TOShowDownloadDialog == 2) {
+        if (UpdateKey.TOShowDownloadDialog == 2) {
             showDownloadDialog(context);
         }
     }

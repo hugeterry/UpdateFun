@@ -21,13 +21,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import cn.hugeterry.updatefun.Key;
+import cn.hugeterry.updatefun.UpdateKey;
 import cn.hugeterry.updatefun.R;
 
 
 public class DownLoadDialog extends Activity {
     ImageView close;
-    private Context mContext= Key.FROMACTIVITY;
+    private Context mContext= UpdateKey.FROMACTIVITY;
 
     // 返回的安装包url
     private String apkUrl;
@@ -87,7 +87,7 @@ public class DownLoadDialog extends Activity {
                 Intent intent = new Intent(DownLoadDialog.this,
                         mContext.getClass());
                 setResult(3, intent);
-                Key.TOShowDownloadDialog = 1;
+                UpdateKey.TOShowDownloadDialog = 1;
                 finish();
                 interceptFlag = true;
             }

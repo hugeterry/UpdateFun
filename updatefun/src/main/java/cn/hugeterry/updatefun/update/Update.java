@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import cn.hugeterry.updatefun.Key;
+import cn.hugeterry.updatefun.UpdateKey;
 
 
 public class Update extends Thread {
@@ -19,7 +19,8 @@ public class Update extends Thread {
     public String changelog;
     public String version;
     public String up_url;
-    private String url = Key.UPDATEURL;
+    private String url = "http://api.fir.im/apps/latest/" + UpdateKey.RELEASE_ID
+            + "?api_token=" + UpdateKey.API_TOKEN;
 
     public Update() {
 
@@ -51,10 +52,8 @@ public class Update extends Thread {
                 System.out.println("4sssssssssssss" + changelog + version + up_url);
             }
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import cn.hugeterry.updatefun.Key;
+import cn.hugeterry.updatefun.UpdateKey;
 import cn.hugeterry.updatefun.R;
 
 
@@ -18,7 +18,7 @@ public class UpdateDialog extends Activity {
     TextView tv, tv_changelog;
     SharedPreferences sh_changelog;
     String changelog;
-    Context context = Key.FROMACTIVITY;
+    Context context = UpdateKey.FROMACTIVITY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(2, intent);
-                Key.TOShowDownloadDialog = 2;
+                UpdateKey.TOShowDownloadDialog = 2;
                 finish();
 
             }
@@ -52,7 +52,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(1, intent);
-                Key.TOShowDownloadDialog = 1;
+                UpdateKey.TOShowDownloadDialog = 1;
                 finish();
             }
         });
