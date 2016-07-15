@@ -1,4 +1,4 @@
-package cn.hugeterry.updatefun.update;
+package cn.hugeterry.updatefun.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +27,7 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 
 public class DownLoadDialog extends Activity {
-    ImageView close;
+    private ImageView close;
     private Context mContext = UpdateKey.FROMACTIVITY;
 
     // 返回的安装包url
@@ -98,6 +98,7 @@ public class DownLoadDialog extends Activity {
         });
 
     }
+
 
     private Runnable mdownApkRunnable = new Runnable() {
         @Override

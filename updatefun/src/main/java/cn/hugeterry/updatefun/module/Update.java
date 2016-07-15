@@ -1,4 +1,4 @@
-package cn.hugeterry.updatefun.update;
+package cn.hugeterry.updatefun.module;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -11,10 +11,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".update.DownLoadDialog"
+            android:name=".view.DownLoadDialog"
             android:theme="@style/MyDialogStyle" />
         <activity
-            android:name=".update.UpdateDialog"
+            android:name=".view.UpdateDialog"
             android:theme="@style/MyDialogStyle" />
     </application>
 

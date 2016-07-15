@@ -1,4 +1,4 @@
-package cn.hugeterry.updatefun.update;
+package cn.hugeterry.updatefun.view;
 
 import android.app.Activity;
 import android.content.Context;

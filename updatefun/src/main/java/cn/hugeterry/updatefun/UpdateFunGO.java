@@ -7,9 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 
-import cn.hugeterry.updatefun.update.DownLoadDialog;
-import cn.hugeterry.updatefun.update.Update;
-import cn.hugeterry.updatefun.update.UpdateDialog;
+import cn.hugeterry.updatefun.view.DownLoadDialog;
+import cn.hugeterry.updatefun.module.Update;
+import cn.hugeterry.updatefun.view.UpdateDialog;
 import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 
