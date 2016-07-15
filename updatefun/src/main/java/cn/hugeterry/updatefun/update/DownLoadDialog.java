@@ -23,11 +23,12 @@ import java.net.URL;
 
 import cn.hugeterry.updatefun.UpdateKey;
 import cn.hugeterry.updatefun.R;
+import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 
 public class DownLoadDialog extends Activity {
     ImageView close;
-    private Context mContext= UpdateKey.FROMACTIVITY;
+    private Context mContext = UpdateKey.FROMACTIVITY;
 
     // 返回的安装包url
     private String apkUrl;
@@ -35,7 +36,7 @@ public class DownLoadDialog extends Activity {
     /* 下载包安装路径 */
     private static final String savePath = "/sdcard/updateFun/";
 
-    private static final String saveFileName = savePath + "xingpostcard.apk";
+    private static String saveFileName = savePath + "newversion.apk";
 
     /* 进度条与通知ui刷新的handler和msg常量 */
     private ProgressBar mProgress;
@@ -73,6 +74,9 @@ public class DownLoadDialog extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.downloaddialog);
+
+        saveFileName = savePath +
+                GetAppInfo.getAppPackageName(UpdateKey.FROMACTIVITY) + ".apk";
 
         sh_updateurl = this.getSharedPreferences("sh_update", MODE_APPEND);
         apkUrl = sh_updateurl.getString("sh_update_url", "");

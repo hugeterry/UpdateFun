@@ -2,23 +2,19 @@ package cn.hugeterry.updatefun.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
  * Date: 16/7/15 15:58
  */
-public class GetAppVersionName {
+public class GetAppInfo {
     public static String getAppVersionName(Context context) {
         String versionName = "";
-        int versionCode;
         try {
-            // ---get the package info---
-            PackageManager pm = context.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pi = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
-            versionCode = pi.versionCode;
             if (versionName == null || versionName.length() <= 0) {
                 return "";
             }
@@ -27,4 +23,9 @@ public class GetAppVersionName {
         }
         return versionName;
     }
+
+    public static String getAppPackageName(Context context) {
+        return context.getPackageName();
+    }
+
 }
