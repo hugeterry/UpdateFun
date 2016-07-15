@@ -10,6 +10,7 @@ import android.os.Message;
 import cn.hugeterry.updatefun.update.DownLoadDialog;
 import cn.hugeterry.updatefun.update.Update;
 import cn.hugeterry.updatefun.update.UpdateDialog;
+import cn.hugeterry.updatefun.utils.GetAppVersionName;
 
 
 public class UpdateFunGO {
@@ -17,7 +18,7 @@ public class UpdateFunGO {
     private Context context;
     private SharedPreferences sh_update;
 
-    private String version = BuildConfig.VERSION_NAME;
+    private String version = "";
 
     private String apkUrl = "";
 
@@ -78,10 +79,12 @@ public class UpdateFunGO {
     public UpdateFunGO(Context context) {
         this.context = context;
         UpdateKey.FROMACTIVITY = context;
+        version = GetAppVersionName.getAppVersionName(context);
         if (UpdateKey.TOShowDownloadDialog == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
+        System.out.println("VERSION_NAME:" + version);
     }
 
     public static void showNoticeDialog(Context context) {
