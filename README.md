@@ -3,8 +3,8 @@
 UpdateFun是一个[fir.im](http://fir.im/)的android更新下载模块，输入[fir.im](http://fir.im/)提供的API_TOKEN以及RELEASE_ID后即可实现检查更新下载
 
 
-<img src="showUI/1.png" width="600" height="400"/>
-<img src="showUI/2.png" width="600" height="400"/>
+<img src="showUI/1.png" width="256"/>
+<img src="showUI/2.png" width="256"/>
 
 
 #用法
