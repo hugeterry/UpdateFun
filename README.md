@@ -1,15 +1,14 @@
 # UpdateFun更新库
 
-UpdateFun是一个[fir.im](http://fir.im/)的android更新下载模块，输入[fir.im](http://fir.im/)提供的API_TOKEN以及RELEASE_ID后即可实现检查更新下载
-
+UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir.im]上上传自己的APP后接入该库即可实现检查更新下载
 
 <img src="showUI/1.png" width="256"/>
 <img src="showUI/2.png" width="256"/>
 
 
-#用法
+##用法
 
-##Step 1
+###Step 1
 
 在gradle文件中加入下面的依赖:
 
@@ -30,7 +29,7 @@ dependencies {
 </dependency>
 ```
 
-##Step 2
+###Step 2
 
 在Application（或者主界面activity中）的onCreate()中加上以下语句进行初始化：
 
@@ -40,7 +39,7 @@ UpdateKey.RELEASE_ID = "写上APP的RELEASE_ID";
 new UpdateFunGO(this);
 ```
 
-##Step 3
+###Step 3
 
 在主界面Activity的onResume()中加上以下语句：
 
@@ -54,7 +53,6 @@ new UpdateFunGO(this);
 
 大功告成，好好享用吧
 
-# LICENSE
+## LICENSE
 
 [GPL v3](LICENSE)
-
