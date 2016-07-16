@@ -41,6 +41,18 @@ UpdateKey.RELEASE_ID = "578a11e7748aac01b7000039";
 new UpdateFunGO(this);
 ```
 
+##Step 3
+
+在主界面Activity的onResume中加上以下语句：
+
+```
+ @Override
+    protected void onResume() {
+        super.onResume();
+        UpdateFunGO.onResume(this);
+    }
+```
+
 # LICENSE
 
 [GPL v3](LICENSE)
