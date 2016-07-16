@@ -32,7 +32,7 @@ dependencies {
 
 ##Step 2
 
-在Application（或者主界面activity中）的onCreate中加上以下语句进行初始化：
+在Application（或者主界面activity中）的onCreate()中加上以下语句进行初始化：
 
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
@@ -42,7 +42,7 @@ new UpdateFunGO(this);
 
 ##Step 3
 
-在主界面Activity的onResume中加上以下语句：
+在主界面Activity的onResume()中加上以下语句：
 
 ```
  @Override
