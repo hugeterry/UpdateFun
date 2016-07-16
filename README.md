@@ -1,4 +1,4 @@
-# UpdateFun更新模块
+# UpdateFun更新库
 
 UpdateFun是一个[fir.im](http://fir.im/)的android更新下载模块，输入[fir.im](http://fir.im/)提供的API_TOKEN以及RELEASE_ID后即可实现检查更新下载
 
@@ -32,12 +32,11 @@ dependencies {
 
 ##Step 2
 
-在Application的onCreate中加上以下语句进行初始化：
+在Application（或者主界面activity中）的onCreate中加上以下语句进行初始化：
 
 ```
-//此处填上在http://fir.im/注册账号后获得的API_TOKEN以及APP的RELEASE_ID
-UpdateKey.API_TOKEN = "";
-UpdateKey.RELEASE_ID = "578a11e7748aac01b7000039";
+UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
+UpdateKey.RELEASE_ID = "写上APP的RELEASE_ID";
 new UpdateFunGO(this);
 ```
 
@@ -52,6 +51,8 @@ new UpdateFunGO(this);
         UpdateFunGO.onResume(this);
     }
 ```
+
+大功告成，好好享用吧
 
 # LICENSE
 
