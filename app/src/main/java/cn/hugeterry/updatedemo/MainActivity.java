@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //在http://fir.im/注册账号后获得的API_TOKEN
+        //此处填上在http://fir.im/注册账号后获得的API_TOKEN以及APP的RELEASE_ID
         UpdateKey.API_TOKEN = "";
         UpdateKey.RELEASE_ID = "578a11e7748aac01b7000039";
         new UpdateFunGO(this);
