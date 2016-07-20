@@ -73,7 +73,7 @@ public class DownLoadDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.downloaddialog);
+        setContentView(R.layout.download_dialog);
 
         saveFileName = savePath +
                 GetAppInfo.getAppPackageName(UpdateKey.FROMACTIVITY) + ".apk";

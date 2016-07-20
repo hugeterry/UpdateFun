@@ -23,7 +23,7 @@ public class UpdateDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.updatedialog);
+        setContentView(R.layout.update_dialog);
 
         yes = (TextView) findViewById(R.id.updatedialog_yes);
         no = (TextView) findViewById(R.id.updatedialog_no);
