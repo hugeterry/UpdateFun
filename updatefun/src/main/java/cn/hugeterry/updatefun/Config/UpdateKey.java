@@ -1,4 +1,4 @@
-package cn.hugeterry.updatefun;
+package cn.hugeterry.updatefun.config;
 
 import android.content.Context;
 

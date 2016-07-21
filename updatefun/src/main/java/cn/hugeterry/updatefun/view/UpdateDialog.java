@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import cn.hugeterry.updatefun.UpdateKey;
+import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.R;
 
 
