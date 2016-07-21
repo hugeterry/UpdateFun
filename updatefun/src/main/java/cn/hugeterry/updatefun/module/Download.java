@@ -1,11 +1,15 @@
 package cn.hugeterry.updatefun.module;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
+import android.widget.RemoteViews;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,13 +30,16 @@ public class Download extends Thread {
     private static final int DOWN_UPDATE = 1;
     private static final int DOWN_OVER = 2;
     private int progress;
+    private int DialigOrNotification;
 
     private Context context;
     private ProgressBar progressBar;
 
-    public Download(Context context,ProgressBar progressBar) {
+    public Download(Context context, ProgressBar progressBar, int DialigOrNotification) {
         this.context = context;
         this.progressBar = progressBar;
+        this.DialigOrNotification = DialigOrNotification;
+
     }
 
     private Handler handler = new Handler() {
@@ -95,7 +102,7 @@ public class Download extends Thread {
 
     }
 
-   
+
     private void installApk() {
         File apkfile = new File(DownloadKey.saveFileName);
         if (!apkfile.exists()) {

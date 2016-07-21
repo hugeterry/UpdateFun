@@ -40,7 +40,7 @@ public class DownLoadDialog extends Activity {
         close = (ImageView) findViewById(R.id.download_dialog_close);
         mProgress = (ProgressBar) findViewById(R.id.progressdialog_p);
 
-        new Download(this, mProgress).start();
+        new Download(this, mProgress, UpdateKey.DialogOrNotification).start();
 
         close.setOnClickListener(new OnClickListener() {
 
