@@ -95,9 +95,7 @@ public class Download extends Thread {
 
     }
 
-    /**
-     * 安装apk
-     */
+   
     private void installApk() {
         File apkfile = new File(DownloadKey.saveFileName);
         if (!apkfile.exists()) {
