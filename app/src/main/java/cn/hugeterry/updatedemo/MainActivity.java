@@ -3,7 +3,7 @@ package cn.hugeterry.updatedemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import cn.hugeterry.updatefun.UpdateKey;
+import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.UpdateFunGO;
 
 public class MainActivity extends AppCompatActivity {
