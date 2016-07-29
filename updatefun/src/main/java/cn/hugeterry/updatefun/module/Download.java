@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.widget.ProgressBar;
 import android.widget.RemoteViews;
@@ -40,6 +41,7 @@ public class Download extends Thread {
 
     private int length;
     private int count = 0;
+    int numread;
 
     public Download(Context context, ProgressBar progressBar) {
         this.context = context;
@@ -60,12 +62,17 @@ public class Download extends Thread {
                     if (UpdateKey.DialogOrNotification == 1) {
                         progressBar.setProgress(progress);
                     } else if (UpdateKey.DialogOrNotification == 2) {
+                        System.out.println("ssssssssaa");
                         mNotification.contentView.setTextViewText(R.id.notification_name, progress + "%");
-                        mNotification.contentView.setProgressBar(R.id.notification_progressbar, count, length, false);
+                        mNotification.contentView.setProgressBar(R.id.notification_progressbar, length, count, false);
                         mNotificationManager.notify(0, mNotification);
                     }
                     break;
                 case DOWN_OVER:
+                    System.out.println("DOWN_OVER");
+                    if (UpdateKey.DialogOrNotification == 2) {
+                        mNotification.contentView.removeAllViews(R.id.notification_progressbar);
+                    }
                     installApk();
                     break;
                 default:
@@ -77,7 +84,7 @@ public class Download extends Thread {
     public void run() {
         try {
             URL url = new URL(DownloadKey.apkUrl);
-            System.out.println("apkUrl"+DownloadKey.apkUrl);
+            System.out.println("apkUrl" + DownloadKey.apkUrl);
             HttpURLConnection conn = (HttpURLConnection) url
                     .openConnection();
             conn.connect();
@@ -91,31 +98,39 @@ public class Download extends Thread {
             String apkFile = DownloadKey.saveFileName;
             File ApkFile = new File(apkFile);
             FileOutputStream fos = new FileOutputStream(ApkFile);
-
+            long tempFileLength = file.length();
             byte buf[] = new byte[1024];
 
             do {
-                int numread = is.read(buf);
+                numread = is.read(buf);
+                System.out.println("ddddddd");
                 count += numread;
                 progress = (int) (((float) count / length) * 100);
+                System.out.println("eeeeeee");
                 // 更新进度
+
                 handler.sendEmptyMessage(DOWN_UPDATE);
+
+                System.out.println("numread:" + numread);
                 if (numread <= 0) {
                     // 下载完成通知安装
-                    handler.sendEmptyMessage(DOWN_OVER);
+                    System.out.println("update now");
+                    installApk();
                     break;
                 }
+                System.out.println("ccccccc");
                 fos.write(buf, 0, numread);
             } while (!DownloadKey.interceptFlag);// 点击取消就停止下载.
 
+            fos.flush();
             fos.close();
             is.close();
+            conn.disconnect();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -124,6 +139,7 @@ public class Download extends Thread {
         if (!apkfile.exists()) {
             return;
         }
+        System.out.println("ssssssss");
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");

@@ -31,7 +31,7 @@ public class GetAppInfo {
         return context.getPackageName();
     }
 
-    public Drawable getAppIcon(Context context) {
+    public static Drawable getAppIcon(Context context) {
         try {
             PackageManager pm = context.getPackageManager();
             ApplicationInfo info = pm.getApplicationInfo(context.getPackageName(), 0);

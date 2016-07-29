@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.widget.RemoteViews;
 
@@ -45,6 +46,7 @@ public class UpdateFunGO {
 
         }
     };
+
 
 
     class MyRunnable_update implements Runnable {
@@ -110,6 +112,7 @@ public class UpdateFunGO {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
+       Thread download= new Download(context, mNotification, mNotificationManager);
 
     }
 
@@ -126,6 +129,7 @@ public class UpdateFunGO {
             intent.setClass(context, DownLoadDialog.class);
             ((Activity) context).startActivityForResult(intent, 0);
         } else if (UpdateKey.DialogOrNotification == 2) {
+
             notificationInit(context);
             new Download(context, mNotification, mNotificationManager).start();
         }
@@ -138,6 +142,7 @@ public class UpdateFunGO {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
         mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         mNotification = new Notification();
+        mNotification.icon= R.drawable.ic_close_white_24dp;
         mNotification.tickerText = "开始下载";
         mNotification.contentView = new RemoteViews(context.getPackageName(), R.layout.download_notification_layout);//通知栏中进度布局
         mNotification.contentIntent = pIntent;
@@ -149,5 +154,11 @@ public class UpdateFunGO {
             showDownloadView(context);
         }
     }
+
+    public static void onStop(Context context) {
+
+    }
+
+
 
 }

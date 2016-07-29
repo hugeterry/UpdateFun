@@ -10,8 +10,8 @@ public class UpdateKey {
     public static String API_TOKEN = "";
     public static String RELEASE_ID = "";
 
-    public static int DialogOrNotification = 1;
-    
+    public static int DialogOrNotification = 2;
+
     public static Context FROMACTIVITY = null;
     public static int TOShowDownloadView = 0;
 }

@@ -42,17 +42,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         tools:text="xxxx.apk" />
 
                     <TextView
+
                         android:id="@+id/notification_progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:minWidth="60dp"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         tools:text="30/100" />
                 </LinearLayout>
 
