@@ -82,7 +82,7 @@ public class UpdateFunGO {
         UpdateKey.FROMACTIVITY = context;
         version = GetAppInfo.getAppVersionName(context);
 
-        if (UpdateKey.TOShowDownloadDialog == 0) {
+        if (UpdateKey.TOShowDownloadView == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
@@ -95,15 +95,15 @@ public class UpdateFunGO {
         ((Activity) context).startActivityForResult(intent, 100);
     }
 
-    public static void showDownloadDialog(Context context) {
+    public static void showDownloadView(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, DownLoadDialog.class);
         ((Activity) context).startActivityForResult(intent, 0);
     }
 
     public static void onResume(Context context) {
-        if (UpdateKey.TOShowDownloadDialog == 2) {
-            showDownloadDialog(context);
+        if (UpdateKey.TOShowDownloadView == 2) {
+            showDownloadView(context);
         }
     }
 

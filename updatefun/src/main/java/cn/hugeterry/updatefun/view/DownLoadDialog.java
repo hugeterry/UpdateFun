@@ -49,7 +49,7 @@ public class DownLoadDialog extends Activity {
                 Intent intent = new Intent(DownLoadDialog.this,
                         mContext.getClass());
                 setResult(3, intent);
-                UpdateKey.TOShowDownloadDialog = 1;
+                UpdateKey.TOShowDownloadView = 1;
                 finish();
                 DownloadKey.interceptFlag = true;
             }

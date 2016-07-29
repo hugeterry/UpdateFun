@@ -38,11 +38,13 @@ public class UpdateDialog extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(UpdateDialog.this, context.getClass());
-                setResult(2, intent);
-                UpdateKey.TOShowDownloadDialog = 2;
-                finish();
-
+                if (UpdateKey.DialogOrNotification == 1) {
+                    Intent intent = new Intent(UpdateDialog.this, context.getClass());
+                    setResult(2, intent);
+                    UpdateKey.TOShowDownloadView = 2;
+                    finish();
+                } else if (UpdateKey.DialogOrNotification == 2) {
+                }
             }
         });
 
@@ -52,7 +54,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(1, intent);
-                UpdateKey.TOShowDownloadDialog = 1;
+                UpdateKey.TOShowDownloadView = 1;
                 finish();
             }
         });
