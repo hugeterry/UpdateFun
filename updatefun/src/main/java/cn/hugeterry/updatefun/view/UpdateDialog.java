@@ -38,13 +38,10 @@ public class UpdateDialog extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                if (UpdateKey.DialogOrNotification == 1) {
                     Intent intent = new Intent(UpdateDialog.this, context.getClass());
                     setResult(2, intent);
                     UpdateKey.TOShowDownloadView = 2;
                     finish();
-                } else if (UpdateKey.DialogOrNotification == 2) {
-                }
             }
         });
 

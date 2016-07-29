@@ -77,7 +77,24 @@ public class UpdateFunGO {
 
     }
 
-    public UpdateFunGO(Context context) {
+    private static volatile UpdateFunGO sInst = null;
+
+    //this is getInstance()
+    public static UpdateFunGO init(Context context) {
+        UpdateFunGO inst = sInst;
+        if (inst == null) {
+            synchronized (UpdateFunGO.class) {
+                inst = sInst;
+                if (inst == null) {
+                    inst = new UpdateFunGO(context);
+                    sInst = inst;
+                }
+            }
+        }
+        return inst;
+    }
+
+    private UpdateFunGO(Context context) {
         this.context = context;
         UpdateKey.FROMACTIVITY = context;
         version = GetAppInfo.getAppVersionName(context);

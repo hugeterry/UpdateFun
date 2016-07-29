@@ -36,7 +36,7 @@ dependencies {
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
 UpdateKey.RELEASE_ID = "写上APP的RELEASE_ID";
-new UpdateFunGO(this);
+UpdateFunGO.init(this);
 ```
 
 ###Step 3
