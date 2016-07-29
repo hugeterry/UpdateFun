@@ -1,7 +1,10 @@
 package cn.hugeterry.updatefun.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 /**
@@ -26,6 +29,18 @@ public class GetAppInfo {
 
     public static String getAppPackageName(Context context) {
         return context.getPackageName();
+    }
+
+    public Drawable getAppIcon(Context context) {
+        try {
+            PackageManager pm = context.getPackageManager();
+            ApplicationInfo info = pm.getApplicationInfo(context.getPackageName(), 0);
+            return info.loadIcon(pm);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+
+        }
+        return null;
     }
 
 }
