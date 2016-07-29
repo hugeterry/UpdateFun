@@ -5,7 +5,7 @@ package cn.hugeterry.updatefun.config;
  * Date: 16/7/21 15:56
  */
 public class DownloadKey {
-    public static final String savePath = "/sdcard/updateFun/";
+    public static final String savePath = "/sdcard/UpdateFun/";
     public static String saveFileName = savePath + "newversion.apk";
     public static String apkUrl = "";
     public static String changeLog = "";

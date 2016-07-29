@@ -62,9 +62,6 @@ public class UpdateFunGO {
                 e.printStackTrace();
             }
 
-            DownloadKey.saveFileName = DownloadKey.savePath +
-                    GetAppInfo.getAppPackageName(UpdateKey.FROMACTIVITY) + ".apk";
-
             sh_update = context.getSharedPreferences("sh_update", context.MODE_APPEND);
 
             System.out.println("apkUrl: " + apkUrl);
@@ -105,6 +102,8 @@ public class UpdateFunGO {
     private UpdateFunGO(Context context) {
         this.context = context;
         UpdateKey.FROMACTIVITY = context;
+        DownloadKey.saveFileName = DownloadKey.savePath +
+                GetAppInfo.getAppPackageName(context) + ".apk";
         version = GetAppInfo.getAppVersionName(context);
 
         if (UpdateKey.TOShowDownloadView == 0) {
@@ -121,6 +120,7 @@ public class UpdateFunGO {
     }
 
     public static void showDownloadView(Context context) {
+
         if (UpdateKey.DialogOrNotification == 1) {
             Intent intent = new Intent();
             intent.setClass(context, DownLoadDialog.class);
@@ -129,6 +129,7 @@ public class UpdateFunGO {
             notificationInit(context);
             new Download(context, mNotification, mNotificationManager).start();
         }
+
     }
 
     private static void notificationInit(Context context) {

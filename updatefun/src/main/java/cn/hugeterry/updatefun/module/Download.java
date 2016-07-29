@@ -38,8 +38,8 @@ public class Download extends Thread {
     private Context context;
     private ProgressBar progressBar;
 
-    int length;
-    int count;
+    private int length;
+    private int count = 0;
 
     public Download(Context context, ProgressBar progressBar) {
         this.context = context;
@@ -77,7 +77,7 @@ public class Download extends Thread {
     public void run() {
         try {
             URL url = new URL(DownloadKey.apkUrl);
-
+            System.out.println("apkUrl"+DownloadKey.apkUrl);
             HttpURLConnection conn = (HttpURLConnection) url
                     .openConnection();
             conn.connect();
@@ -92,7 +92,6 @@ public class Download extends Thread {
             File ApkFile = new File(apkFile);
             FileOutputStream fos = new FileOutputStream(ApkFile);
 
-            count = 0;
             byte buf[] = new byte[1024];
 
             do {
