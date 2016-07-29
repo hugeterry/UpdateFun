@@ -1,13 +1,19 @@
 package cn.hugeterry.updatefun;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.RemoteViews;
 
+import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
+import cn.hugeterry.updatefun.module.Download;
 import cn.hugeterry.updatefun.view.DownLoadDialog;
 import cn.hugeterry.updatefun.module.Update;
 import cn.hugeterry.updatefun.view.UpdateDialog;
@@ -20,8 +26,11 @@ public class UpdateFunGO {
     private SharedPreferences sh_update;
 
     private String version = "";
-
     private String apkUrl = "";
+
+    //通知栏进度条
+    private static NotificationManager mNotificationManager = null;
+    private static Notification mNotification;
 
     Handler up_handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -53,18 +62,17 @@ public class UpdateFunGO {
                 e.printStackTrace();
             }
 
+            DownloadKey.saveFileName = DownloadKey.savePath +
+                    GetAppInfo.getAppPackageName(UpdateKey.FROMACTIVITY) + ".apk";
+
             sh_update = context.getSharedPreferences("sh_update", context.MODE_APPEND);
-            SharedPreferences.Editor up = sh_update.edit();
-            up.putString("sh_update_url", update.up_url);
-            up.putString("sh_update_changelog", update.changelog);
-            up.commit();
 
             System.out.println("apkUrl: " + apkUrl);
-            if (update.version == null) {
+            if (DownloadKey.version == null) {
                 System.out.println("无联网，不更新");
                 msg.arg1 = 2;
                 up_handler.sendMessage(msg);
-            } else if (!update.version.equals(version)) {
+            } else if (!DownloadKey.version.equals(version)) {
                 System.out.println("需更新版本");
                 msg.arg1 = 1;
                 up_handler.sendMessage(msg);
@@ -106,16 +114,33 @@ public class UpdateFunGO {
 
     }
 
-    public static void showNoticeDialog(Context context) {
+    public void showNoticeDialog(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, UpdateDialog.class);
         ((Activity) context).startActivityForResult(intent, 100);
     }
 
     public static void showDownloadView(Context context) {
-        Intent intent = new Intent();
-        intent.setClass(context, DownLoadDialog.class);
-        ((Activity) context).startActivityForResult(intent, 0);
+        if (UpdateKey.DialogOrNotification == 1) {
+            Intent intent = new Intent();
+            intent.setClass(context, DownLoadDialog.class);
+            ((Activity) context).startActivityForResult(intent, 0);
+        } else if (UpdateKey.DialogOrNotification == 2) {
+            notificationInit(context);
+            new Download(context, mNotification, mNotificationManager).start();
+        }
+    }
+
+    private static void notificationInit(Context context) {
+        //通知栏内显示下载进度条
+        Intent intent = new Intent(context, context.getClass());//点击进度条，进入程序
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+        mNotification = new Notification();
+        mNotification.tickerText = "开始下载";
+        mNotification.contentView = new RemoteViews(context.getPackageName(), R.layout.download_notification_layout);//通知栏中进度布局
+        mNotification.contentIntent = pIntent;
+
     }
 
     public static void onResume(Context context) {

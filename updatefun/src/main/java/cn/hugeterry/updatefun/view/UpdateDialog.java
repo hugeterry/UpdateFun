@@ -9,15 +9,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.R;
 
 
 public class UpdateDialog extends Activity {
+
     TextView yes, no;
     TextView tv, tv_changelog;
-    SharedPreferences sh_changelog;
-    String changelog;
+
     Context context = UpdateKey.FROMACTIVITY;
 
     @Override
@@ -30,9 +31,7 @@ public class UpdateDialog extends Activity {
         tv = (TextView) findViewById(R.id.updatedialog_text);
         tv_changelog = (TextView) findViewById(R.id.updatedialog_text_changelog);
 
-        sh_changelog = this.getSharedPreferences("sh_update", MODE_APPEND);
-        changelog = sh_changelog.getString("sh_update_changelog", "");
-        tv_changelog.setText("更新日志：\n" + changelog);
+        tv_changelog.setText("更新日志：\n" + DownloadKey.changeLog);
 
         yes.setOnClickListener(new OnClickListener() {
 

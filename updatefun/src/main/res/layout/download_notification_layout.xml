@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -41,8 +42,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="xxxx.apk"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        tools:text="xxxx.apk" />
 
                     <TextView
                         android:id="@+id/notification_progress"
@@ -51,7 +52,8 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:minWidth="60dp"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        tools:text="30/100" />
                 </LinearLayout>
 
                 <ProgressBar

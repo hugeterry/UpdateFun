@@ -23,24 +23,15 @@ public class DownLoadDialog extends Activity {
 
     private Context mContext = UpdateKey.FROMACTIVITY;
 
-    private SharedPreferences sh_updateurl;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.download_dialog);
 
-        DownloadKey.saveFileName = DownloadKey.savePath +
-                GetAppInfo.getAppPackageName(UpdateKey.FROMACTIVITY) + ".apk";
-
-        sh_updateurl = this.getSharedPreferences("sh_update", MODE_APPEND);
-        DownloadKey.apkUrl = sh_updateurl.getString("sh_update_url", "");
-
         close = (ImageView) findViewById(R.id.download_dialog_close);
         mProgress = (ProgressBar) findViewById(R.id.progressdialog_p);
 
-        new Download(this, mProgress, UpdateKey.DialogOrNotification).start();
+        new Download(this, mProgress).start();
 
         close.setOnClickListener(new OnClickListener() {
 

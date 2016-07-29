@@ -10,15 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 
 
 public class Update extends Thread {
 
     public String result;
-    public String changelog;
-    public String version;
-    public String up_url;
     private String url = "http://api.fir.im/apps/latest/" + UpdateKey.RELEASE_ID
             + "?api_token=" + UpdateKey.API_TOKEN;
 
@@ -43,10 +41,10 @@ public class Update extends Thread {
                 }
                 result = new String(sb.toString().getBytes(), "utf-8");
                 JSONObject object = new JSONObject(result);
-                changelog = object.getString("changelog");
-                version = object.getString("versionShort");
-                up_url = object.getString("installUrl");
-                System.out.println("4sssssssssssss" + changelog + version + up_url);
+                DownloadKey.changeLog = object.getString("changelog");
+                DownloadKey.version = object.getString("versionShort");
+                DownloadKey.apkUrl = object.getString("installUrl");
+                System.out.println("info:" + DownloadKey.changeLog + DownloadKey.version + DownloadKey.apkUrl);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

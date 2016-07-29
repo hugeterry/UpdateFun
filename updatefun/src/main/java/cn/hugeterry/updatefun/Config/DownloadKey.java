@@ -7,6 +7,8 @@ package cn.hugeterry.updatefun.config;
 public class DownloadKey {
     public static final String savePath = "/sdcard/updateFun/";
     public static String saveFileName = savePath + "newversion.apk";
-    public static String apkUrl ="";
+    public static String apkUrl = "";
+    public static String changeLog = "";
+    public static String version;
     public static boolean interceptFlag = false;
 }

@@ -19,7 +19,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.hugeterry.updatefun.R;
 import cn.hugeterry.updatefun.config.DownloadKey;
+import cn.hugeterry.updatefun.config.UpdateKey;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
@@ -30,23 +32,38 @@ public class Download extends Thread {
     private static final int DOWN_UPDATE = 1;
     private static final int DOWN_OVER = 2;
     private int progress;
-    private int DialigOrNotification;
+    private Notification mNotification;
+    private NotificationManager mNotificationManager = null;
 
     private Context context;
     private ProgressBar progressBar;
 
-    public Download(Context context, ProgressBar progressBar, int DialigOrNotification) {
+    int length;
+    int count;
+
+    public Download(Context context, ProgressBar progressBar) {
         this.context = context;
         this.progressBar = progressBar;
-        this.DialigOrNotification = DialigOrNotification;
 
+    }
+
+    public Download(Context context, Notification mNotification, NotificationManager mNotificationManager) {
+        this.context = context;
+        this.mNotification = mNotification;
+        this.mNotificationManager = mNotificationManager;
     }
 
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case DOWN_UPDATE:
-                    progressBar.setProgress(progress);
+                    if (UpdateKey.DialogOrNotification == 1) {
+                        progressBar.setProgress(progress);
+                    } else if (UpdateKey.DialogOrNotification == 2) {
+                        mNotification.contentView.setTextViewText(R.id.notification_name, progress + "%");
+                        mNotification.contentView.setProgressBar(R.id.notification_progressbar, count, length, false);
+                        mNotificationManager.notify(0, mNotification);
+                    }
                     break;
                 case DOWN_OVER:
                     installApk();
@@ -64,7 +81,7 @@ public class Download extends Thread {
             HttpURLConnection conn = (HttpURLConnection) url
                     .openConnection();
             conn.connect();
-            int length = conn.getContentLength();
+            length = conn.getContentLength();
             InputStream is = conn.getInputStream();
 
             File file = new File(DownloadKey.savePath);
@@ -75,7 +92,7 @@ public class Download extends Thread {
             File ApkFile = new File(apkFile);
             FileOutputStream fos = new FileOutputStream(ApkFile);
 
-            int count = 0;
+            count = 0;
             byte buf[] = new byte[1024];
 
             do {
