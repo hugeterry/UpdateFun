@@ -19,7 +19,7 @@ public class UpdateDialog extends Activity {
     TextView yes, no;
     TextView tv, tv_changelog;
 
-    Context context = UpdateKey.FROMACTIVITY;
+    Context context = DownloadKey.FROMACTIVITY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,10 @@ public class UpdateDialog extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                    Intent intent = new Intent(UpdateDialog.this, context.getClass());
-                    setResult(2, intent);
-                    UpdateKey.TOShowDownloadView = 2;
-                    finish();
+                Intent intent = new Intent(UpdateDialog.this, context.getClass());
+                setResult(2, intent);
+                DownloadKey.TOShowDownloadView = 2;
+                finish();
             }
         });
 
@@ -50,7 +50,7 @@ public class UpdateDialog extends Activity {
             public void onClick(View arg0) {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(1, intent);
-                UpdateKey.TOShowDownloadView = 1;
+                DownloadKey.TOShowDownloadView = 1;
                 finish();
             }
         });

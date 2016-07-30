@@ -15,6 +15,4 @@ public class UpdateKey {
 
     public static int DialogOrNotification = WITH_NOTIFITION;
 
-    public static Context FROMACTIVITY = null;
-    public static int TOShowDownloadView = 0;
 }

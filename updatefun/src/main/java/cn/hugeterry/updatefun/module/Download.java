@@ -75,7 +75,7 @@ public class Download extends Thread {
                         NotificationManager manger = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
                         manger.cancel(1115);
                     }
-                    UpdateKey.TOShowDownloadView = 1;
+                    DownloadKey.TOShowDownloadView = 1;
                     installApk();
                     break;
                 default:

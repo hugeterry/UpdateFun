@@ -97,12 +97,12 @@ public class UpdateFunGO {
 
     private UpdateFunGO(Context context) {
         this.context = context;
-        UpdateKey.FROMACTIVITY = context;
+        DownloadKey.FROMACTIVITY = context;
         DownloadKey.saveFileName = DownloadKey.savePath +
                 GetAppInfo.getAppPackageName(context) + ".apk";
         version = GetAppInfo.getAppVersionName(context);
 
-        if (UpdateKey.TOShowDownloadView == 0) {
+        if (DownloadKey.TOShowDownloadView == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
@@ -144,7 +144,7 @@ public class UpdateFunGO {
     }
 
     public static void onResume(Context context) {
-        if (UpdateKey.TOShowDownloadView == 2) {
+        if (DownloadKey.TOShowDownloadView == 2) {
             showDownloadView(context);
         }
     }
