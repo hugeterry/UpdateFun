@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
@@ -29,7 +30,7 @@ public class UpdateFunGO {
     private static Thread download;
     //通知栏进度条
     private static NotificationManager mNotificationManager = null;
-    private static Notification mNotification;
+    private static Notification.Builder builder;
 
     Handler up_handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -125,21 +126,24 @@ public class UpdateFunGO {
         } else if (UpdateKey.DialogOrNotification == 2) {
 
             notificationInit(context);
-            download = new Download(context, mNotification, mNotificationManager);
+            download = new Download(context, builder, mNotificationManager);
             download.start();
         }
 
     }
 
     private static void notificationInit(Context context) {
-        Intent intent = new Intent(context, context.getClass());//点击进度条，进入程序
+        Intent intent = new Intent(context, context.getClass());
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
         mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-        mNotification = new Notification();
-        mNotification.icon = R.drawable.ic_close_white_24dp;
-        mNotification.tickerText = "开始下载";
-        mNotification.contentView = new RemoteViews(context.getPackageName(), R.layout.download_notification_layout);//通知栏中进度布局
-        mNotification.contentIntent = pIntent;
+        builder = new Notification.Builder(context);
+
+        builder.setSmallIcon(android.R.drawable.ic_menu_info_details)
+                .setTicker("开始下载")
+                .setContentTitle(GetAppInfo.getAppName(context))
+                .setContentText("正在更新")
+                .setContentIntent(pIntent)
+                .setWhen(System.currentTimeMillis());
 
     }
 
@@ -154,6 +158,5 @@ public class UpdateFunGO {
             download.interrupt();
         }
     }
-
 
 }
