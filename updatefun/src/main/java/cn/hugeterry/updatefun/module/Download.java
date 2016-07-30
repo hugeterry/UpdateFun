@@ -33,7 +33,7 @@ public class Download extends Thread {
     private static final int DOWN_OVER = 2;
     private int progress;
     private Notification.Builder builder;
-    private NotificationManager mNotificationManager = null;
+    private NotificationManager notificationManager = null;
 
     private Context context;
     private ProgressBar progressBar;
@@ -48,10 +48,10 @@ public class Download extends Thread {
 
     }
 
-    public Download(Context context, Notification.Builder builder, NotificationManager mNotificationManager) {
+    public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
         this.context = context;
         this.builder = builder;
-        this.mNotificationManager = mNotificationManager;
+        this.notificationManager = notificationManager;
     }
 
     private Handler handler = new Handler() {
@@ -63,7 +63,7 @@ public class Download extends Thread {
                         progressBar.setProgress(progress);
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setProgress( length, count, false);
-                        mNotificationManager.notify(1115, builder.build());
+                        notificationManager.notify(1115, builder.build());
                     }
                     break;
                 case DOWN_OVER:
@@ -71,9 +71,8 @@ public class Download extends Thread {
                         ((Activity) context).finish();
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setTicker("下载完成");
-                        mNotificationManager.notify(1115, builder.build());
-                        NotificationManager manger = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-                        manger.cancel(1115);
+                        notificationManager.notify(1115, builder.build());
+                        notificationManager.cancel(1115);
                     }
                     DownloadKey.TOShowDownloadView = 1;
                     installApk();

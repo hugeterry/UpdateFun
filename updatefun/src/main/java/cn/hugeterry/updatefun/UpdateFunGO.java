@@ -29,7 +29,7 @@ public class UpdateFunGO {
     private String version = "";
     private static Thread download;
     //通知栏进度条
-    private static NotificationManager mNotificationManager = null;
+    private static NotificationManager notificationManager = null;
     private static Notification.Builder builder;
 
     Handler up_handler = new Handler() {
@@ -126,7 +126,7 @@ public class UpdateFunGO {
         } else if (UpdateKey.DialogOrNotification == 2) {
 
             notificationInit(context);
-            download = new Download(context, builder, mNotificationManager);
+            download = new Download(context, builder, notificationManager);
             download.start();
         }
 
@@ -135,7 +135,7 @@ public class UpdateFunGO {
     private static void notificationInit(Context context) {
         Intent intent = new Intent(context, context.getClass());
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         builder = new Notification.Builder(context);
 
         builder.setSmallIcon(android.R.drawable.ic_menu_info_details)
@@ -144,7 +144,6 @@ public class UpdateFunGO {
                 .setContentText("正在更新")
                 .setContentIntent(pIntent)
                 .setWhen(System.currentTimeMillis());
-
     }
 
     public static void onResume(Context context) {
