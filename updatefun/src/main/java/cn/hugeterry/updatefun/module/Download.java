@@ -62,7 +62,8 @@ public class Download extends Thread {
                     if (UpdateKey.DialogOrNotification == 1) {
                         progressBar.setProgress(progress);
                     } else if (UpdateKey.DialogOrNotification == 2) {
-                        builder.setProgress( length, count, false);
+                        builder.setProgress(length, count, false)
+                                .setContentText("下载进度:" + progress + "%");
                         notificationManager.notify(1115, builder.build());
                     }
                     break;
