@@ -40,8 +40,8 @@ public class Download extends Thread {
     private ProgressBar progressBar;
 
     private int length;
-    private int count = 0;
-    int numread;
+    private int count;
+
 
     public Download(Context context, ProgressBar progressBar) {
         this.context = context;
@@ -62,6 +62,7 @@ public class Download extends Thread {
                     if (UpdateKey.DialogOrNotification == 1) {
                         progressBar.setProgress(progress);
                     } else if (UpdateKey.DialogOrNotification == 2) {
+                        System.out.println("Thread.currentThread().getName()" + Thread.currentThread().getName());
                         System.out.println("ssssssssaa");
                         mNotification.contentView.setTextViewText(R.id.notification_name, progress + "%");
                         mNotification.contentView.setProgressBar(R.id.notification_progressbar, length, count, false);
@@ -70,9 +71,12 @@ public class Download extends Thread {
                     break;
                 case DOWN_OVER:
                     System.out.println("DOWN_OVER");
-                    if (UpdateKey.DialogOrNotification == 2) {
+                    if (UpdateKey.DialogOrNotification == 1) {
+
+                    } else if (UpdateKey.DialogOrNotification == 2) {
                         mNotification.contentView.removeAllViews(R.id.notification_progressbar);
                     }
+                    UpdateKey.TOShowDownloadView = 1;
                     installApk();
                     break;
                 default:
@@ -100,7 +104,8 @@ public class Download extends Thread {
             FileOutputStream fos = new FileOutputStream(ApkFile);
             long tempFileLength = file.length();
             byte buf[] = new byte[1024];
-
+            int times = 0; //这很重要
+            int numread;
             do {
                 numread = is.read(buf);
                 System.out.println("ddddddd");
@@ -108,14 +113,16 @@ public class Download extends Thread {
                 progress = (int) (((float) count / length) * 100);
                 System.out.println("eeeeeee");
                 // 更新进度
-
-                handler.sendEmptyMessage(DOWN_UPDATE);
-
+                if ((times == 512) || (tempFileLength == length)) {
+                    handler.sendEmptyMessage(DOWN_UPDATE);
+                    times = 0;
+                }
+                times++;
                 System.out.println("numread:" + numread);
                 if (numread <= 0) {
                     // 下载完成通知安装
                     System.out.println("update now");
-                    installApk();
+                    handler.sendEmptyMessage(DOWN_OVER);
                     break;
                 }
                 System.out.println("ccccccc");
@@ -144,6 +151,7 @@ public class Download extends Thread {
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");
         context.startActivity(i);
+
 
     }
 }

@@ -28,7 +28,7 @@ public class UpdateFunGO {
 
     private String version = "";
     private String apkUrl = "";
-
+    private static Thread download;
     //通知栏进度条
     private static NotificationManager mNotificationManager = null;
     private static Notification mNotification;
@@ -46,7 +46,6 @@ public class UpdateFunGO {
 
         }
     };
-
 
 
     class MyRunnable_update implements Runnable {
@@ -112,7 +111,7 @@ public class UpdateFunGO {
             Thread thread_update = new Thread(new MyRunnable_update());
             thread_update.start();
         }
-       Thread download= new Download(context, mNotification, mNotificationManager);
+
 
     }
 
@@ -131,7 +130,8 @@ public class UpdateFunGO {
         } else if (UpdateKey.DialogOrNotification == 2) {
 
             notificationInit(context);
-            new Download(context, mNotification, mNotificationManager).start();
+            download = new Download(context, mNotification, mNotificationManager);
+            download.start();
         }
 
     }
@@ -142,7 +142,7 @@ public class UpdateFunGO {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
         mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         mNotification = new Notification();
-        mNotification.icon= R.drawable.ic_close_white_24dp;
+        mNotification.icon = R.drawable.ic_close_white_24dp;
         mNotification.tickerText = "开始下载";
         mNotification.contentView = new RemoteViews(context.getPackageName(), R.layout.download_notification_layout);//通知栏中进度布局
         mNotification.contentIntent = pIntent;
@@ -156,9 +156,10 @@ public class UpdateFunGO {
     }
 
     public static void onStop(Context context) {
-
+        if (UpdateKey.DialogOrNotification == 2) {
+            download.interrupt();
+        }
     }
-
 
 
 }
