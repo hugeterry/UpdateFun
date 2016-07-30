@@ -85,7 +85,7 @@ public class UpdateFunGO {
 
     private static volatile UpdateFunGO sInst = null;
 
-    //this is getInstance()
+    //getInstance()
     public static UpdateFunGO init(Context context) {
         UpdateFunGO inst = sInst;
         if (inst == null) {

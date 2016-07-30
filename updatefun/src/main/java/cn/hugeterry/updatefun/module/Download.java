@@ -1,17 +1,5 @@
 package cn.hugeterry.updatefun.module;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.widget.ProgressBar;
-import android.widget.RemoteViews;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +7,15 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.ProgressBar;
 
 import cn.hugeterry.updatefun.R;
 import cn.hugeterry.updatefun.config.DownloadKey;
@@ -74,7 +71,7 @@ public class Download extends Thread {
                     if (UpdateKey.DialogOrNotification == 1) {
 
                     } else if (UpdateKey.DialogOrNotification == 2) {
-                        mNotification.contentView.removeAllViews(R.id.notification_progressbar);
+
                     }
                     UpdateKey.TOShowDownloadView = 1;
                     installApk();
