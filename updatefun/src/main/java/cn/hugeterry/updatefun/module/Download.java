@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -63,15 +64,16 @@ public class Download extends Thread {
                         System.out.println("ssssssssaa");
                         mNotification.contentView.setTextViewText(R.id.notification_name, progress + "%");
                         mNotification.contentView.setProgressBar(R.id.notification_progressbar, length, count, false);
-                        mNotificationManager.notify(0, mNotification);
+                        mNotificationManager.notify(1115, mNotification);
                     }
                     break;
                 case DOWN_OVER:
                     System.out.println("DOWN_OVER");
                     if (UpdateKey.DialogOrNotification == 1) {
-
+                        ((Activity) context).finish();
                     } else if (UpdateKey.DialogOrNotification == 2) {
-
+                        NotificationManager manger = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+                        manger.cancel(1115);
                     }
                     UpdateKey.TOShowDownloadView = 1;
                     installApk();
