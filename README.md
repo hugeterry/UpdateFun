@@ -2,9 +2,9 @@
 
 UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir.im]上上传自己的APP后接入该库即可实现检查更新下载
 
-<img src="showUI/1.png" width="256"/>
-<img src="showUI/2.png" width="256"/>
-<img src="showUI/3.png" width="256"/>
+<img src="showUI/1.png" height="400"/>
+<img src="showUI/2.png" height="400"/>
+<img src="showUI/3.png" height="400"/>
 
 
 ##用法
