@@ -12,6 +12,21 @@ import android.util.Log;
  * Date: 16/7/15 15:58
  */
 public class GetAppInfo {
+    public static String getAppName(Context context) {
+        String appName = "";
+        try {
+            PackageInfo pi = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            appName = pi.applicationInfo.loadLabel(context.getPackageManager()).toString();
+            if (appName == null || appName.length() <= 0) {
+                return "";
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appName;
+    }
+
     public static String getAppVersionName(Context context) {
         String versionName = "";
         try {
