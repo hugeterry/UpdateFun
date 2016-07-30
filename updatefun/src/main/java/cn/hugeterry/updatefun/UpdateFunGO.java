@@ -24,10 +24,8 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 public class UpdateFunGO {
 
     private Context context;
-    private SharedPreferences sh_update;
 
     private String version = "";
-    private String apkUrl = "";
     private static Thread download;
     //通知栏进度条
     private static NotificationManager mNotificationManager = null;
@@ -63,9 +61,6 @@ public class UpdateFunGO {
                 e.printStackTrace();
             }
 
-            sh_update = context.getSharedPreferences("sh_update", context.MODE_APPEND);
-
-            System.out.println("apkUrl: " + apkUrl);
             if (DownloadKey.version == null) {
                 System.out.println("无联网，不更新");
                 msg.arg1 = 2;
@@ -137,7 +132,6 @@ public class UpdateFunGO {
     }
 
     private static void notificationInit(Context context) {
-        //通知栏内显示下载进度条
         Intent intent = new Intent(context, context.getClass());//点击进度条，进入程序
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
         mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
