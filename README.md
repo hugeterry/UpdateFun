@@ -4,6 +4,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 <img src="showUI/1.png" width="256"/>
 <img src="showUI/2.png" width="256"/>
+<img src="showUI/3.png" width="256"/>
 
 
 ##用法
@@ -14,7 +15,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 ```
 dependencies {
-    compile 'cn.hugeterry.updatefun:updatefun:1.2.1'
+    compile 'cn.hugeterry.updatefun:updatefun:1.3.2'
 }
 ```
 
@@ -24,7 +25,7 @@ dependencies {
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
-  <version>1.2.1</version>
+  <version>1.3.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -36,12 +37,15 @@ dependencies {
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
 UpdateKey.RELEASE_ID = "写上APP的RELEASE_ID";
-new UpdateFunGO(this);
+//下载方式:
+//UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;通过Dialog来进行下载
+//UpdateKey.DialogOrNotification=UpdateKey.WITH_NOTIFITION;通过通知栏来进行下载(默认)
+UpdateFunGO.init(this);
 ```
 
 ###Step 3
 
-在主界面Activity的onResume()中加上以下语句：
+在主界面Activity中加上以下语句：
 
 ```
  @Override
@@ -49,6 +53,11 @@ new UpdateFunGO(this);
         super.onResume();
         UpdateFunGO.onResume(this);
     }
+  @Override
+     protected void onStop() {
+         super.onStop();
+         UpdateFunGO.onStop(this);
+     }
 ```
 
 大功告成，好好享用吧
