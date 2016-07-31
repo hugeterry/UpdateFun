@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -37,15 +38,16 @@ public class Download extends Thread {
 
     private Context context;
     private ProgressBar progressBar;
+    private TextView textView;
 
     private int length;
     private int count;
 
 
-    public Download(Context context, ProgressBar progressBar) {
+    public Download(Context context, ProgressBar progressBar, TextView textView) {
         this.context = context;
         this.progressBar = progressBar;
-
+        this.textView = textView;
     }
 
     public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
@@ -61,6 +63,7 @@ public class Download extends Thread {
                 case DOWN_UPDATE:
                     if (UpdateKey.DialogOrNotification == 1) {
                         progressBar.setProgress(progress);
+                        textView.setText(progress + "%");
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setProgress(length, count, false)
                                 .setContentText("下载进度:" + progress + "%");

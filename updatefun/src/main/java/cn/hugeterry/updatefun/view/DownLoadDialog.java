@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -20,6 +21,7 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 public class DownLoadDialog extends Activity {
     private ImageView close;
     private ProgressBar mProgress;
+    private TextView count;
 
     private Context mContext = DownloadKey.FROMACTIVITY;
 
@@ -28,10 +30,11 @@ public class DownLoadDialog extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.download_dialog);
 
-        close = (ImageView) findViewById(R.id.download_dialog_close);
-        mProgress = (ProgressBar) findViewById(R.id.progressdialog_p);
+        close = (ImageView) findViewById(R.id.downloaddialog_close);
+        mProgress = (ProgressBar) findViewById(R.id.downloaddialog_progress);
+        count= (TextView) findViewById(R.id.downloaddialog_count);
 
-        new Download(this, mProgress).start();
+        new Download(this, mProgress,count).start();
 
         close.setOnClickListener(new OnClickListener() {
 
