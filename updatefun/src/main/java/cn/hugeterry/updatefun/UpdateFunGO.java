@@ -6,12 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.support.v4.app.NotificationCompat;
-import android.widget.RemoteViews;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -28,7 +24,7 @@ public class UpdateFunGO {
 
     private String version = "";
     private static Thread download;
-    //通知栏进度条
+
     private static NotificationManager notificationManager = null;
     private static Notification.Builder builder;
 
@@ -36,7 +32,6 @@ public class UpdateFunGO {
         public void handleMessage(Message msg) {
             switch (msg.arg1) {
                 case 1:
-                    // 弹出提示更新对话框
                     showNoticeDialog(context);
                     break;
                 default:
@@ -153,7 +148,7 @@ public class UpdateFunGO {
     }
 
     public static void onStop(Context context) {
-        if (DownloadKey.TOShowDownloadView == 2 && UpdateKey.DialogOrNotification == 2) {
+        if (UpdateKey.DialogOrNotification == 2) {
             download.interrupt();
         }
     }
