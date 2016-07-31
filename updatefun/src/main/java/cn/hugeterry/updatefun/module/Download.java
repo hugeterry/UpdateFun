@@ -138,7 +138,6 @@ public class Download extends Thread {
         if (!apkfile.exists()) {
             return;
         }
-        System.out.println("ssssssss");
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");
