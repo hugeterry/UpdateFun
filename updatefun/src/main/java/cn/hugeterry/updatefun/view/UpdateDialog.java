@@ -3,21 +3,19 @@ package cn.hugeterry.updatefun.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
-import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.R;
 
 
 public class UpdateDialog extends Activity {
 
     TextView yes, no;
-    TextView tv, tv_changelog;
+    TextView tv_changelog;
 
     Context context = DownloadKey.FROMACTIVITY;
 
@@ -28,7 +26,6 @@ public class UpdateDialog extends Activity {
 
         yes = (TextView) findViewById(R.id.updatedialog_yes);
         no = (TextView) findViewById(R.id.updatedialog_no);
-        tv = (TextView) findViewById(R.id.updatedialog_text);
         tv_changelog = (TextView) findViewById(R.id.updatedialog_text_changelog);
 
         tv_changelog.setText("更新日志：\n" + DownloadKey.changeLog);

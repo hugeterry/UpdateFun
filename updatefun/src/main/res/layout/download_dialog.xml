@@ -6,7 +6,7 @@
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/bg_card"
+        android:background="@drawable/material_card"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="25dp">

@@ -13,6 +13,16 @@
         <item name="colorButtonNormal">#ec407a</item>
     </style>
 
+    <style name="ActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:minWidth">56dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="MyDialogStyle" parent="AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>

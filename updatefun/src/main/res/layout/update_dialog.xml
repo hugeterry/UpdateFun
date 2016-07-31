@@ -1,61 +1,94 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:minWidth="320dp"
+    android:orientation="vertical"
+    android:padding="32dp">
 
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/bg_card"
-        android:padding="25dp">
-
-        <TextView
-            android:id="@+id/updatedialog_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="检测到新版本，是否现在更新？"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/updatedialog_text_changelog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/updatedialog_text"
-            android:layout_margin="10dp"
-            android:textSize="14sp"
-            tools:text="更新日志" />
+    <LinearLayout
+        android:id="@+id/material_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/material_card"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/updatedialog_btn"
-            android:layout_width="250dp"
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/updatedialog_yes"
-                android:layout_width="wrap_content"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:background="@color/colorPrimary"
-                android:padding="10dp"
-                android:text="马上更新" />
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="23dp"
+                android:text="发现新版本"
+                android:textColor="#DE000000"
+                android:textSize="23sp" />
 
-            <TextView
-                android:id="@+id/updatedialog_no"
-                android:layout_width="wrap_content"
+            <ScrollView
+                android:id="@+id/message_content_root"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:padding="10dp"
-                android:text="以后再说" />
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                tools:layout_height="700dp">
+
+                <LinearLayout
+                    android:id="@+id/message_content_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="23dp">
+
+                    <TextView
+                        android:id="@+id/updatedialog_text_changelog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.3"
+                        android:textColor="#8a000000"
+                        android:textSize="17sp"
+                        tools:text="message" />
+                </LinearLayout>
+
+            </ScrollView>
+
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingTop="8dp">
 
-</RelativeLayout> 
+            <Button
+                android:id="@+id/updatedialog_no"
+                style="@style/ActionButton"
+                android:stateListAnimator="@null"
+                android:text="取消"
+                android:textColor="#DE000000" />
+
+            <Button
+                android:id="@+id/updatedialog_yes"
+                style="@style/ActionButton"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="12dp"
+                android:stateListAnimator="@null"
+                android:text="现在下载"
+                android:textColor="#ff239ff2" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
