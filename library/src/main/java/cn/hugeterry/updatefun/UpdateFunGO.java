@@ -106,7 +106,6 @@ public class UpdateFunGO {
             thread_update.start();
         }
 
-
     }
 
     public void showNoticeDialog(Context context) {
