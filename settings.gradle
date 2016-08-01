@@ -1,1 +1,1 @@
-include ':app', ':updatefun'
+include ':sample', ':library'

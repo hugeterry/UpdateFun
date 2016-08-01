@@ -151,7 +151,7 @@ public class UpdateFunGO {
     }
 
     public static void onStop(Context context) {
-        if (UpdateKey.DialogOrNotification == 2) {
+        if (DownloadKey.TOShowDownloadView == 2 && UpdateKey.DialogOrNotification == 2) {
             download.interrupt();
         }
     }
