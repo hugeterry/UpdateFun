@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.UpdateFunGO;
-
+/**
+ * Created by hugeterry(http://hugeterry.cn)
+ * Date: 16/7/14 09：35
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         UpdateKey.API_TOKEN = "";
         UpdateKey.RELEASE_ID = "573ecefa748aac36f4000007";
         //如果你想通过Dialog来进行下载，可以如下设置
-        UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
+        //UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
         UpdateFunGO.init(this);
     }
 
