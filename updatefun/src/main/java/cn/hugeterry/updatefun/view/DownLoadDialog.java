@@ -3,7 +3,6 @@ package cn.hugeterry.updatefun.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,11 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
-import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.R;
 import cn.hugeterry.updatefun.module.Download;
-import cn.hugeterry.updatefun.utils.GetAppInfo;
 
+/**
+ * Created by hugeterry(http://hugeterry.cn)
+ * Date: 16/7/18 13:32
+ */
 
 public class DownLoadDialog extends Activity {
     private ImageView close;

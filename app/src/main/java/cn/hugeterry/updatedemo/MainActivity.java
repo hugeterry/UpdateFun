@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         UpdateKey.API_TOKEN = "";
         UpdateKey.RELEASE_ID = "573ecefa748aac36f4000007";
         //如果你想通过Dialog来进行下载，可以如下设置
-//        UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
+        //UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
         UpdateFunGO.init(this);
     }
 
