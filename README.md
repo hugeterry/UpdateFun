@@ -15,7 +15,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 ```
 dependencies {
-    compile 'cn.hugeterry.updatefun:updatefun:1.3.8'
+    compile 'cn.hugeterry.updatefun:library:1.4.0'
 }
 ```
 
