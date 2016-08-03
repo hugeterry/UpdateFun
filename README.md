@@ -15,7 +15,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 ```
 dependencies {
-    compile 'cn.hugeterry.updatefun:updatefun:1.3.6'
+    compile 'cn.hugeterry.updatefun:updatefun:1.3.8'
 }
 ```
 
@@ -25,7 +25,7 @@ dependencies {
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
-  <version>1.3.6</version>
+  <version>1.3.8</version>
   <type>pom</type>
 </dependency>
 ```
@@ -36,7 +36,7 @@ dependencies {
 
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
-UpdateKey.RELEASE_ID = "写上APP的RELEASE_ID";
+UpdateKey.APP_ID = "写上APP的应用ID";
 //下载方式:
 //UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;通过Dialog来进行下载
 //UpdateKey.DialogOrNotification=UpdateKey.WITH_NOTIFITION;通过通知栏来进行下载(默认)

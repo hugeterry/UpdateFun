@@ -6,7 +6,7 @@ package cn.hugeterry.updatefun.config;
  */
 public class UpdateKey {
     public static String API_TOKEN = "";
-    public static String RELEASE_ID = "";
+    public static String APP_ID = "";
 
     public final static int WITH_DIALOG  = 1;
     public final static int WITH_NOTIFITION = 2;
