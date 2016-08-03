@@ -24,8 +24,8 @@ dependencies {
 ```
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
-  <artifactId>updatefun</artifactId>
-  <version>1.3.8</version>
+  <artifactId>library</artifactId>
+  <version>1.4.0</version>
   <type>pom</type>
 </dependency>
 ```
