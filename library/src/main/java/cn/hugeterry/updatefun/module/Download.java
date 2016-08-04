@@ -1,12 +1,14 @@
 package cn.hugeterry.updatefun.module;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -88,15 +90,42 @@ public class Download extends Thread {
     };
 
     public void run() {
+        URL url = null;
+        HttpURLConnection conn = null;
+        InputStream is = null;
         try {
-            URL url = new URL(DownloadKey.apkUrl);
-            System.out.println("apkUrl" + DownloadKey.apkUrl);
-            HttpURLConnection conn = (HttpURLConnection) url
-                    .openConnection();
+            url = new URL(DownloadKey.apkUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("apkUrl" + DownloadKey.apkUrl);
+        try {
+            conn = (HttpURLConnection) url.openConnection();
             conn.connect();
             length = conn.getContentLength();
-            InputStream is = conn.getInputStream();
+            is = conn.getInputStream();
+        } catch (FileNotFoundException e0) {
+//            e0.printStackTrace();
+            try {
+                conn.disconnect();
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setInstanceFollowRedirects(false);
+                conn.connect();
+                String location = new String(conn.getHeaderField("Location").getBytes("ISO-8859-1"), "UTF-8").replace(" ", "");
+                url = new URL(location);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.connect();
+                length = conn.getContentLength();
+                is = conn.getInputStream();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
 
+
+        try {
             File file = new File(DownloadKey.savePath);
             if (!file.exists()) {
                 file.mkdir();
@@ -128,10 +157,8 @@ public class Download extends Thread {
             fos.close();
             is.close();
             conn.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e3) {
+            e3.printStackTrace();
         }
     }
 
