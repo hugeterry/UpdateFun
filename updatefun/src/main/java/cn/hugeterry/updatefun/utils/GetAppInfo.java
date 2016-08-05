@@ -58,4 +58,14 @@ public class GetAppInfo {
         return null;
     }
 
+    public static String getAPKPackageName(Context context, String apkPath) {
+        PackageManager pm = context.getPackageManager();
+        PackageInfo info = pm.getPackageArchiveInfo(apkPath, PackageManager.GET_ACTIVITIES);
+        if (info != null) {
+            ApplicationInfo appInfo = info.applicationInfo;
+            return appInfo.packageName;
+        }
+        return null;
+    }
+
 }
