@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -61,15 +62,15 @@ public class UpdateFunGO {
             }
 
             if (DownloadKey.version == null) {
-                System.out.println("无联网，不更新");
+                Log.i("UpdateFun TAG", "获取的应用信息为空，不更新，请确认网络是否畅通或者应用ID及API_TOKEN是否正确");
                 msg.arg1 = 2;
                 up_handler.sendMessage(msg);
             } else if (!DownloadKey.version.equals(version)) {
-                System.out.println("需更新版本");
+                Log.i("UpdateFun TAG", "需更新版本");
                 msg.arg1 = 1;
                 up_handler.sendMessage(msg);
             } else {
-                System.out.println("版本已是最新");
+                Log.i("UpdateFun TAG", "版本已是最新");
                 msg.arg1 = 2;
                 up_handler.sendMessage(msg);
             }

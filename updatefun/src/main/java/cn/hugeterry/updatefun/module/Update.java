@@ -1,5 +1,7 @@
 package cn.hugeterry.updatefun.module;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,7 +49,9 @@ public class Update extends Thread {
                 DownloadKey.changeLog = object.getString("changelog");
                 DownloadKey.version = object.getString("versionShort");
                 DownloadKey.apkUrl = object.getString("installUrl");
-                System.out.println("info:" + DownloadKey.changeLog + DownloadKey.version + DownloadKey.apkUrl);
+                Log.i("UpdateFun TAG",
+                        String.format("ChangeLog:%s, Version:%s, ApkDownloadUrl:%s",
+                                DownloadKey.changeLog, DownloadKey.version,DownloadKey.apkUrl));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
