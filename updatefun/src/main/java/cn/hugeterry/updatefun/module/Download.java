@@ -20,11 +20,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
+import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
@@ -81,7 +84,9 @@ public class Download extends Thread {
                         notificationManager.cancel(1115);
                     }
                     DownloadKey.TOShowDownloadView = 1;
-                    installApk();
+                    if (checkApk()) {
+                        installApk();
+                    }
                     break;
                 default:
                     break;
@@ -98,7 +103,8 @@ public class Download extends Thread {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println("apkUrl" + DownloadKey.apkUrl);
+        Log.i("UpdateFun TAG",
+                String.format("ApkDownloadUrl:%s", DownloadKey.apkUrl));
         try {
             conn = (HttpURLConnection) url.openConnection();
             conn.connect();
@@ -162,6 +168,19 @@ public class Download extends Thread {
         }
     }
 
+    private boolean checkApk() {
+        String apkName = GetAppInfo.getAPKPackageName(context, DownloadKey.saveFileName);
+        String appName = GetAppInfo.getAppPackageName(context);
+        if (apkName.equals(appName)) {
+            Log.i("UpdateFun TAG", "包名相同,安装apk");
+            return true;
+        } else {
+            Log.i("UpdateFun TAG",
+                    String.format("apk检验:包名不同。该app包名:%s，apk包名:%s", appName, apkName));
+            Toast.makeText(context, "apk检验:包名不同,不进行安装,原因可能是运营商劫持", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
 
     private void installApk() {
         File apkfile = new File(DownloadKey.saveFileName);
@@ -172,7 +191,6 @@ public class Download extends Thread {
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");
         context.startActivity(i);
-
 
     }
 }
