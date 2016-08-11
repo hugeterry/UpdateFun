@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import java.lang.ref.WeakReference;
+
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.module.Download;
@@ -25,25 +27,48 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 public class UpdateFunGO {
 
     private Context context;
-
+    private Up_handler up_handler;
     private String version = "";
     private static Thread download;
 
     private static NotificationManager notificationManager = null;
     private static Notification.Builder builder;
 
-    Handler up_handler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.arg1) {
-                case 1:
-                    showNoticeDialog(context);
-                    break;
-                default:
-                    break;
-            }
+    static class Up_handler extends Handler {
+        WeakReference<Context> mActivityReference;
 
+        Up_handler(Context context) {
+            mActivityReference = new WeakReference<Context>(context);
         }
-    };
+
+        @Override
+        public void handleMessage(Message msg) {
+            final Context context = mActivityReference.get();
+            if (context != null) {
+                switch (msg.arg1) {
+                    case 1:
+                        showNoticeDialog(context);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+
+//    Handler up_handler = new Handler() {
+//        public void handleMessage(Message msg) {
+//            switch (msg.arg1) {
+//                case 1:
+//                    showNoticeDialog(context);
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        }
+//    };
 
 
     class MyRunnable_update implements Runnable {
@@ -101,6 +126,7 @@ public class UpdateFunGO {
         DownloadKey.saveFileName = DownloadKey.savePath +
                 GetAppInfo.getAppPackageName(context) + ".apk";
         version = GetAppInfo.getAppVersionName(context);
+        up_handler = new Up_handler(context);
 
         if (DownloadKey.TOShowDownloadView == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
@@ -109,7 +135,7 @@ public class UpdateFunGO {
 
     }
 
-    public void showNoticeDialog(Context context) {
+    public static void showNoticeDialog(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, UpdateDialog.class);
         ((Activity) context).startActivityForResult(intent, 100);
