@@ -172,7 +172,7 @@ public class Download extends Thread {
         String apkName = GetAppInfo.getAPKPackageName(context, DownloadKey.saveFileName);
         String appName = GetAppInfo.getAppPackageName(context);
         if (apkName.equals(appName)) {
-            Log.i("UpdateFun TAG", "包名相同,安装apk");
+            Log.i("UpdateFun TAG", "apk检验:包名相同,安装apk");
             return true;
         } else {
             Log.i("UpdateFun TAG",

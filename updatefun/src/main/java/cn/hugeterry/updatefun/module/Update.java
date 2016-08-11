@@ -25,7 +25,6 @@ public class Update extends Thread {
     private String url = "http://api.fir.im/apps/latest/" + UpdateKey.APP_ID
             + "?api_token=" + UpdateKey.API_TOKEN;
 
-
     public void run() {
         try {
             URL httpUrl = new URL(url);
@@ -45,18 +44,25 @@ public class Update extends Thread {
                     sb.append(str);
                 }
                 result = new String(sb.toString().getBytes(), "utf-8");
-                JSONObject object = new JSONObject(result);
-                DownloadKey.changeLog = object.getString("changelog");
-                DownloadKey.version = object.getString("versionShort");
-                DownloadKey.apkUrl = object.getString("installUrl");
-                Log.i("UpdateFun TAG",
-                        String.format("ChangeLog:%s, Version:%s, ApkDownloadUrl:%s",
-                                DownloadKey.changeLog, DownloadKey.version,DownloadKey.apkUrl));
+
+                interpretingData(result);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void interpretingData(String result) {
+        try {
+            JSONObject object = new JSONObject(result);
+            DownloadKey.changeLog = object.getString("changelog");
+            DownloadKey.version = object.getString("versionShort");
+            DownloadKey.apkUrl = object.getString("installUrl");
+            Log.i("UpdateFun TAG",
+                    String.format("ChangeLog:%s, Version:%s, ApkDownloadUrl:%s",
+                            DownloadKey.changeLog, DownloadKey.version, DownloadKey.apkUrl));
         } catch (JSONException e) {
             e.printStackTrace();
         }
