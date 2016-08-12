@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="8dp"
             android:text="正在下载："
             android:textSize="18sp" />
 
@@ -23,13 +23,14 @@
             android:id="@+id/downloaddialog_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:progressDrawable="@drawable/bg_progress" />
 
         <TextView
             android:id="@+id/downloaddialog_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:textColor="#ff239ff2"
             tools:text="80%" />
 
