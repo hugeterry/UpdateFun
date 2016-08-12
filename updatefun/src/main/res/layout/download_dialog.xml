@@ -23,7 +23,8 @@
             android:id="@+id/downloaddialog_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="2dp"
+            android:progressDrawable="@drawable/bg_progress" />
 
         <TextView
             android:id="@+id/downloaddialog_count"
