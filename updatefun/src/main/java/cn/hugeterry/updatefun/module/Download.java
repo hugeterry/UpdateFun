@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,32 +38,36 @@ public class Download extends Thread {
 
     private static final int DOWN_UPDATE = 1;
     private static final int DOWN_OVER = 2;
-    private int progress;
-    private Notification.Builder builder;
-    private NotificationManager notificationManager = null;
+    private static int progress;
+    private static Notification.Builder builder;
+    private static NotificationManager notificationManager = null;
 
-    private Context context;
-    private ProgressBar progressBar;
-    private TextView textView;
+    private Down_handler handler;
+    private static Context context;
+    private static ProgressBar progressBar;
+    private static TextView textView;
 
-    private int length;
-    private int count;
+    private static int length;
+    private static int count;
 
 
     public Download(Context context, ProgressBar progressBar, TextView textView) {
         this.context = context;
         this.progressBar = progressBar;
         this.textView = textView;
+        handler = new Down_handler();
     }
 
     public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
         this.context = context;
         this.builder = builder;
         this.notificationManager = notificationManager;
+        handler = new Down_handler();
     }
 
-    private Handler handler = new Handler() {
+    static class Down_handler extends Handler {
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+        @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case DOWN_UPDATE:
@@ -92,7 +97,8 @@ public class Download extends Thread {
                     break;
             }
         }
-    };
+    }
+
 
     public void run() {
         URL url = null;
@@ -168,7 +174,7 @@ public class Download extends Thread {
         }
     }
 
-    private boolean checkApk() {
+    private static boolean checkApk() {
         String apkName = GetAppInfo.getAPKPackageName(context, DownloadKey.saveFileName);
         String appName = GetAppInfo.getAppPackageName(context);
         if (apkName.equals(appName)) {
@@ -182,7 +188,7 @@ public class Download extends Thread {
         }
     }
 
-    private void installApk() {
+    private static void installApk() {
         File apkfile = new File(DownloadKey.saveFileName);
         if (!apkfile.exists()) {
             return;
