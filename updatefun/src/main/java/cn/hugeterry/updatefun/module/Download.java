@@ -29,6 +29,7 @@ import android.widget.Toast;
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.utils.GetAppInfo;
+import cn.hugeterry.updatefun.view.DownLoadDialog;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
@@ -51,11 +52,9 @@ public class Download extends Thread {
     private static int count;
 
 
-    public Download(Context context, ProgressBar progressBar, TextView textView) {
+    public Download(Context context, DownLoadDialog downLoadDialog) {
         this.context = context;
-        this.progressBar = progressBar;
-        this.textView = textView;
-        handler = new Down_handler();
+        handler = new Down_handler(downLoadDialog);
     }
 
     public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
@@ -66,14 +65,27 @@ public class Download extends Thread {
     }
 
     static class Down_handler extends Handler {
+        WeakReference<DownLoadDialog> mActivityReference;
+
+        Down_handler() {
+        }
+
+        Down_handler(DownLoadDialog activity) {
+            mActivityReference = new WeakReference<>(activity);
+        }
+
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void handleMessage(Message msg) {
+            DownLoadDialog activity = null;
+            if (mActivityReference != null) {
+                activity = mActivityReference.get();
+            }
             switch (msg.what) {
                 case DOWN_UPDATE:
                     if (UpdateKey.DialogOrNotification == 1) {
-                        progressBar.setProgress(progress);
-                        textView.setText(progress + "%");
+                        activity.progressBar.setProgress(progress);
+                        activity.textView.setText(progress + "%");
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setProgress(length, count, false)
                                 .setContentText("下载进度:" + progress + "%");
@@ -82,7 +94,7 @@ public class Download extends Thread {
                     break;
                 case DOWN_OVER:
                     if (UpdateKey.DialogOrNotification == 1) {
-                        ((Activity) context).finish();
+                        activity.finish();
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setTicker("下载完成");
                         notificationManager.notify(1115, builder.build());
@@ -97,6 +109,7 @@ public class Download extends Thread {
                     break;
             }
         }
+
     }
 
 

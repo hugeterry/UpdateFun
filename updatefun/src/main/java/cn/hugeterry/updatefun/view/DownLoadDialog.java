@@ -21,8 +21,8 @@ import cn.hugeterry.updatefun.module.Download;
 
 public class DownLoadDialog extends Activity {
     private ImageView close;
-    private ProgressBar mProgress;
-    private TextView count;
+    public ProgressBar progressBar;
+    public TextView textView;
 
     private Context mContext = DownloadKey.FROMACTIVITY;
 
@@ -32,10 +32,10 @@ public class DownLoadDialog extends Activity {
         setContentView(R.layout.download_dialog);
 
         close = (ImageView) findViewById(R.id.downloaddialog_close);
-        mProgress = (ProgressBar) findViewById(R.id.downloaddialog_progress);
-        count= (TextView) findViewById(R.id.downloaddialog_count);
+        progressBar = (ProgressBar) findViewById(R.id.downloaddialog_progress);
+        textView = (TextView) findViewById(R.id.downloaddialog_count);
 
-        new Download(this, mProgress,count).start();
+        new Download(this, this).start();
 
         close.setOnClickListener(new OnClickListener() {
 

@@ -26,7 +26,7 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
  */
 public class UpdateFunGO {
 
-    private static Context context;
+    private Context context;
     private Up_handler up_handler;
     private String version = "";
     private static Thread download;
@@ -35,14 +35,23 @@ public class UpdateFunGO {
     private static Notification.Builder builder;
 
     static class Up_handler extends Handler {
+        WeakReference<Context> mActivityReference;
+
+        Up_handler(Context context) {
+            mActivityReference = new WeakReference<>(context);
+        }
+
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.arg1) {
-                case 1:
-                    showNoticeDialog(context);
-                    break;
-                default:
-                    break;
+            final Context context = mActivityReference.get();
+            if (context != null) {
+                switch (msg.arg1) {
+                    case 1:
+                        showNoticeDialog(context);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -102,7 +111,7 @@ public class UpdateFunGO {
         DownloadKey.saveFileName = DownloadKey.savePath +
                 GetAppInfo.getAppPackageName(context) + ".apk";
         version = GetAppInfo.getAppVersionName(context);
-        up_handler = new Up_handler();
+        up_handler = new Up_handler(context);
 
         if (DownloadKey.TOShowDownloadView == 0) {
             Thread thread_update = new Thread(new MyRunnable_update());
