@@ -40,50 +40,51 @@ public class Download extends Thread {
     private static final int DOWN_UPDATE = 1;
     private static final int DOWN_OVER = 2;
     private static int progress;
-    private static Notification.Builder builder;
-    private static NotificationManager notificationManager = null;
 
     private Down_handler handler;
-    private static Context context;
 
     private static int length;
     private static int count;
 
 
-    public Download(Context context, DownLoadDialog downLoadDialog) {
-        this.context = context;
-        handler = new Down_handler(downLoadDialog);
+    public Download(Context context) {
+        handler = new Down_handler(context);
     }
 
     public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
-        this.context = context;
-        this.builder = builder;
-        this.notificationManager = notificationManager;
-        handler = new Down_handler();
+        handler = new Down_handler(context, builder, notificationManager);
     }
 
     static class Down_handler extends Handler {
-        WeakReference<DownLoadDialog> mActivityReference;
+        WeakReference<Context> mContextReference;
+        WeakReference<Notification.Builder> mBuilderReference;
+        WeakReference<NotificationManager> mNManagerReference;
 
-        Down_handler() {
+        Down_handler(Context context) {
+            mContextReference = new WeakReference<>(context);
         }
 
-        Down_handler(DownLoadDialog activity) {
-            mActivityReference = new WeakReference<>(activity);
+        Down_handler(Context context, Notification.Builder builder, NotificationManager notificationManager) {
+            mContextReference = new WeakReference<>(context);
+            mBuilderReference = new WeakReference<>(builder);
+            mNManagerReference = new WeakReference<>(notificationManager);
         }
 
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void handleMessage(Message msg) {
-            DownLoadDialog activity = null;
-            if (mActivityReference != null) {
-                activity = mActivityReference.get();
+            Context context = mContextReference.get();
+            Notification.Builder builder = null;
+            NotificationManager notificationManager = null;
+            if (UpdateKey.DialogOrNotification == 2) {
+                builder = mBuilderReference.get();
+                notificationManager = mNManagerReference.get();
             }
             switch (msg.what) {
                 case DOWN_UPDATE:
                     if (UpdateKey.DialogOrNotification == 1) {
-                        activity.progressBar.setProgress(progress);
-                        activity.textView.setText(progress + "%");
+                        ((DownLoadDialog) context).progressBar.setProgress(progress);
+                        ((DownLoadDialog) context).textView.setText(progress + "%");
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setProgress(length, count, false)
                                 .setContentText("下载进度:" + progress + "%");
@@ -92,15 +93,15 @@ public class Download extends Thread {
                     break;
                 case DOWN_OVER:
                     if (UpdateKey.DialogOrNotification == 1) {
-                        activity.finish();
+                        ((DownLoadDialog) context).finish();
                     } else if (UpdateKey.DialogOrNotification == 2) {
                         builder.setTicker("下载完成");
                         notificationManager.notify(1115, builder.build());
                         notificationManager.cancel(1115);
                     }
                     DownloadKey.TOShowDownloadView = 1;
-                    if (checkApk()) {
-                        installApk();
+                    if (checkApk(context)) {
+                        installApk(context);
                     }
                     break;
                 default:
@@ -185,7 +186,7 @@ public class Download extends Thread {
         }
     }
 
-    private static boolean checkApk() {
+    private static boolean checkApk(Context context) {
         String apkName = GetAppInfo.getAPKPackageName(context, DownloadKey.saveFileName);
         String appName = GetAppInfo.getAppPackageName(context);
         if (apkName.equals(appName)) {
@@ -199,7 +200,7 @@ public class Download extends Thread {
         }
     }
 
-    private static void installApk() {
+    private static void installApk(Context context) {
         File apkfile = new File(DownloadKey.saveFileName);
         if (!apkfile.exists()) {
             return;
