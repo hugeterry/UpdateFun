@@ -30,9 +30,6 @@ public class UpdateFunGO {
     private String version = "";
     private static Thread download;
 
-    private static NotificationManager notificationManager = null;
-    private static Notification.Builder builder;
-
     static class Up_handler extends Handler {
         WeakReference<Context> mActivityReference;
 
@@ -132,25 +129,25 @@ public class UpdateFunGO {
             ((Activity) context).startActivityForResult(intent, 0);
         } else if (UpdateKey.DialogOrNotification == 2) {
 
-            notificationInit(context);
-            download = new Download(context, builder, notificationManager);
+            Notification.Builder builder = notificationInit(context);
+            download = new Download(context, builder);
             download.start();
         }
 
     }
 
-    private static void notificationInit(Context context) {
+    private static Notification.Builder notificationInit(Context context) {
         Intent intent = new Intent(context, context.getClass());
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-        builder = new Notification.Builder(context);
 
+        Notification.Builder builder = new Notification.Builder(context);
         builder.setSmallIcon(android.R.drawable.ic_menu_info_details)
                 .setTicker("开始下载")
                 .setContentTitle(GetAppInfo.getAppName(context))
                 .setContentText("正在更新")
                 .setContentIntent(pIntent)
                 .setWhen(System.currentTimeMillis());
+        return builder;
     }
 
     public static void onResume(Context context) {

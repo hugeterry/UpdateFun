@@ -51,7 +51,9 @@ public class Download extends Thread {
         handler = new Down_handler(context);
     }
 
-    public Download(Context context, Notification.Builder builder, NotificationManager notificationManager) {
+    public Download(Context context, Notification.Builder builder) {
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         handler = new Down_handler(context, builder, notificationManager);
     }
 
