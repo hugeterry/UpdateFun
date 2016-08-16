@@ -45,8 +45,6 @@ public class Download extends Thread {
 
     private Down_handler handler;
     private static Context context;
-    private static ProgressBar progressBar;
-    private static TextView textView;
 
     private static int length;
     private static int count;

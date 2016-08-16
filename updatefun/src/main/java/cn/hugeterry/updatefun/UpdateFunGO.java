@@ -26,7 +26,6 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
  */
 public class UpdateFunGO {
 
-    private Context context;
     private Up_handler up_handler;
     private String version = "";
     private static Thread download;
@@ -106,7 +105,6 @@ public class UpdateFunGO {
     }
 
     private UpdateFunGO(Context context) {
-        this.context = context;
         DownloadKey.FROMACTIVITY = context;
         DownloadKey.saveFileName = DownloadKey.savePath +
                 GetAppInfo.getAppPackageName(context) + ".apk";
@@ -164,6 +162,9 @@ public class UpdateFunGO {
     public static void onStop(Context context) {
         if (DownloadKey.TOShowDownloadView == 2 && UpdateKey.DialogOrNotification == 2) {
             download.interrupt();
+        }
+        if (DownloadKey.FROMACTIVITY != null) {
+            DownloadKey.FROMACTIVITY = null;
         }
     }
 
