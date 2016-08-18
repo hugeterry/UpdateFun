@@ -29,6 +29,7 @@ import android.widget.Toast;
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.utils.GetAppInfo;
+import cn.hugeterry.updatefun.utils.InstallApk;
 import cn.hugeterry.updatefun.view.DownLoadDialog;
 
 /**
@@ -103,7 +104,7 @@ public class Download extends Thread {
                     }
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
-                        installApk(context);
+                        InstallApk.startInstall(context);
                     }
                     break;
                 default:
@@ -112,7 +113,6 @@ public class Download extends Thread {
         }
 
     }
-
 
     public void run() {
         URL url = null;
@@ -202,15 +202,4 @@ public class Download extends Thread {
         }
     }
 
-    private static void installApk(Context context) {
-        File apkfile = new File(DownloadKey.saveFileName);
-        if (!apkfile.exists()) {
-            return;
-        }
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
-                "application/vnd.android.package-archive");
-        context.startActivity(i);
-
-    }
 }
