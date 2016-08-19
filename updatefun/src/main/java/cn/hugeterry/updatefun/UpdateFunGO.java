@@ -2,22 +2,15 @@ package cn.hugeterry.updatefun;
 
 import android.app.Activity;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-
-import java.lang.ref.WeakReference;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.module.Download;
+import cn.hugeterry.updatefun.module.HandleUpdateResult;
 import cn.hugeterry.updatefun.view.DownLoadDialog;
-import cn.hugeterry.updatefun.module.Update;
-import cn.hugeterry.updatefun.view.UpdateDialog;
 import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 /**
@@ -26,63 +19,7 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
  */
 public class UpdateFunGO {
 
-    private Up_handler up_handler;
-    private String version = "";
     private static Thread download;
-
-    static class Up_handler extends Handler {
-        WeakReference<Context> mActivityReference;
-
-        Up_handler(Context context) {
-            mActivityReference = new WeakReference<>(context);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            final Context context = mActivityReference.get();
-            if (context != null) {
-                switch (msg.arg1) {
-                    case 1:
-                        showNoticeDialog(context);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    class MyRunnable_update implements Runnable {
-
-        @Override
-        public void run() {
-            // 检测更新
-            Update update = new Update();
-            update.start();
-
-            Message msg = new Message();
-            try {
-                update.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (DownloadKey.version == null) {
-                Log.i("UpdateFun TAG", "获取的应用信息为空，不更新，请确认网络是否畅通或者应用ID及API_TOKEN是否正确");
-                msg.arg1 = 2;
-                up_handler.sendMessage(msg);
-            } else if (!DownloadKey.version.equals(version)) {
-                Log.i("UpdateFun TAG", "需更新版本");
-                msg.arg1 = 1;
-                up_handler.sendMessage(msg);
-            } else {
-                Log.i("UpdateFun TAG", "版本已是最新");
-                msg.arg1 = 2;
-                up_handler.sendMessage(msg);
-            }
-        }
-
-    }
 
     private static volatile UpdateFunGO sInst = null;
 
@@ -105,30 +42,21 @@ public class UpdateFunGO {
         DownloadKey.FROMACTIVITY = context;
         DownloadKey.saveFileName = DownloadKey.savePath +
                 GetAppInfo.getAppPackageName(context) + ".apk";
-        version = GetAppInfo.getAppVersionName(context);
-        up_handler = new Up_handler(context);
 
         if (DownloadKey.TOShowDownloadView == 0) {
-            Thread thread_update = new Thread(new MyRunnable_update());
+            Thread thread_update = new Thread(new HandleUpdateResult(context));
             thread_update.start();
         }
 
     }
 
-    public static void showNoticeDialog(Context context) {
-        Intent intent = new Intent();
-        intent.setClass(context, UpdateDialog.class);
-        ((Activity) context).startActivityForResult(intent, 100);
-    }
 
     public static void showDownloadView(Context context) {
-
         if (UpdateKey.DialogOrNotification == 1) {
             Intent intent = new Intent();
             intent.setClass(context, DownLoadDialog.class);
             ((Activity) context).startActivityForResult(intent, 0);
         } else if (UpdateKey.DialogOrNotification == 2) {
-
             Notification.Builder builder = notificationInit(context);
             download = new Download(context, builder);
             download.start();
