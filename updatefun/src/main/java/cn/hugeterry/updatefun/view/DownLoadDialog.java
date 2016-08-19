@@ -41,8 +41,7 @@ public class DownLoadDialog extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(DownLoadDialog.this,
-                        mContext.getClass());
+                Intent intent = new Intent(DownLoadDialog.this, mContext.getClass());
                 setResult(3, intent);
                 DownloadKey.TOShowDownloadView = 1;
                 DownloadKey.interceptFlag = true;

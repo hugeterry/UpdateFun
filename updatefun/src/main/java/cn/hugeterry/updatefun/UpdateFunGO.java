@@ -40,9 +40,6 @@ public class UpdateFunGO {
 
     private UpdateFunGO(Context context) {
         DownloadKey.FROMACTIVITY = context;
-        DownloadKey.saveFileName = DownloadKey.savePath +
-                GetAppInfo.getAppPackageName(context) + ".apk";
-
         if (DownloadKey.TOShowDownloadView == 0) {
             Thread thread_update = new Thread(new HandleUpdateResult(context));
             thread_update.start();
@@ -52,6 +49,8 @@ public class UpdateFunGO {
 
 
     public static void showDownloadView(Context context) {
+        DownloadKey.saveFileName = DownloadKey.savePath +
+                GetAppInfo.getAppPackageName(context) + ".apk";
         if (UpdateKey.DialogOrNotification == 1) {
             Intent intent = new Intent();
             intent.setClass(context, DownLoadDialog.class);
