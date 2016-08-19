@@ -104,7 +104,7 @@ public class Download extends Thread {
                     }
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
-                        InstallApk.startInstall(context);
+                        InstallApk.startInstall(context, DownloadKey.saveFileName);
                     }
                     break;
                 default:

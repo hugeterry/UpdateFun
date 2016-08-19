@@ -6,15 +6,13 @@ import android.net.Uri;
 
 import java.io.File;
 
-import cn.hugeterry.updatefun.config.DownloadKey;
-
 /**
  * Created by hugeterry(http://hugeterry.cn)
  * Date: 16/8/18 16:52
  */
 public class InstallApk {
-    public static void startInstall(Context context) {
-        File apkfile = new File(DownloadKey.saveFileName);
+    public static void startInstall(Context context, String filePath) {
+        File apkfile = new File(filePath);
         if (!apkfile.exists()) {
             return;
         }
