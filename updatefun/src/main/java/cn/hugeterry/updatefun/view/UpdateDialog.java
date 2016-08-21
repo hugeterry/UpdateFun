@@ -17,10 +17,10 @@ import cn.hugeterry.updatefun.R;
  */
 public class UpdateDialog extends Activity {
 
-    TextView yes, no;
-    TextView tv_changelog;
+    private TextView yes, no;
+    private TextView tv_changelog;
 
-    Context context = DownloadKey.FROMACTIVITY;
+    private Context context = DownloadKey.FROMACTIVITY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
