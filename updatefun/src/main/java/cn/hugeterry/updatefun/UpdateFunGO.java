@@ -68,7 +68,7 @@ public class UpdateFunGO {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         Notification.Builder builder = new Notification.Builder(context);
-        builder.setSmallIcon(android.R.drawable.ic_menu_info_details)
+        builder.setSmallIcon(android.R.drawable.stat_sys_download)
                 .setTicker("开始下载")
                 .setContentTitle(GetAppInfo.getAppName(context))
                 .setContentText("正在更新")
