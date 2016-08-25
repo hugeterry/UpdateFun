@@ -32,7 +32,7 @@ dependencies {
 
 ###Step 2
 
-在Application（或者主界面activity中）的onCreate()中加上以下语句进行初始化：
+在主界面activigengz的onCreate()中加上以下语句进行初始化：
 
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
