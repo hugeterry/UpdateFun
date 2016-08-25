@@ -32,7 +32,7 @@ dependencies {
 
 ###Step 2
 
-在主界面activigengz的onCreate()中加上以下语句进行初始化(请放在setContentView()方法的后面):
+在主界面activity的onCreate()中加上以下语句进行初始化(请放在setContentView()方法的后面):
 
 ```
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
