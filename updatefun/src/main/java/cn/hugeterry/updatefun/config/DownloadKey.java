@@ -1,6 +1,7 @@
 package cn.hugeterry.updatefun.config;
 
 import android.content.Context;
+import android.os.Environment;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
@@ -10,7 +11,7 @@ public class DownloadKey {
 
     public static Context FROMACTIVITY = null;
     public static int TOShowDownloadView = 0;
-    public static final String savePath = "/sdcard/UpdateFun/";
+    public static final String savePath = Environment.getExternalStorageDirectory() + "/UpdateFun/";
     public static String saveFileName = savePath + "newversion.apk";
     public static String apkUrl = "";
     public static String changeLog = "";
