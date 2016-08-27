@@ -98,7 +98,7 @@ public class Download extends Thread {
                     }
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
-                        Log.i("UpdateFun TAG", "安装路径:" + DownloadKey.saveFileName);
+                        Log.i("UpdateFun TAG", "APK路径:" + DownloadKey.saveFileName);
                         InstallApk.startInstall(context, DownloadKey.saveFileName);
                     }
                     break;
