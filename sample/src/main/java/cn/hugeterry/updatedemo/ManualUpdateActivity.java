@@ -3,7 +3,11 @@ package cn.hugeterry.updatedemo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+
+import cn.hugeterry.updatefun.UpdateFunGO;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
@@ -29,6 +33,12 @@ public class ManualUpdateActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("关于");
     }
 
+    public void checkUpdate(View view){
+        Log.i("UpdateFun TAG","begin");
+        UpdateFunGO.init(this);
+        UpdateFunGO.onResume(this);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -39,4 +49,15 @@ public class ManualUpdateActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UpdateFunGO.onResume(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        UpdateFunGO.onStop(this);
+    }
 }
