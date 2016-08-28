@@ -7,6 +7,7 @@ import android.view.View;
 
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.UpdateFunGO;
+
 /**
  * Created by hugeterry(http://hugeterry.cn)
  * Date: 16/7/14 09：35
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         UpdateFunGO.init(this);
     }
 
-    public void toUpdateView(View view){
+    public void toUpdateView(View view) {
         //跳转至手动更新Activity,还在奋斗中
-        Intent intent=new Intent(this,ManualUpdateActivity.class);
+        Intent intent = new Intent(this, ManualUpdateActivity.class);
         startActivity(intent);
     }
 

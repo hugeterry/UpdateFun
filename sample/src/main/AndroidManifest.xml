@@ -15,7 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ManualUpdateActivity" />
+
+        <activity
+            android:name=".ManualUpdateActivity"
+            android:theme="@style/AppTheme_NoActionBar" />
+
     </application>
 
 </manifest>
