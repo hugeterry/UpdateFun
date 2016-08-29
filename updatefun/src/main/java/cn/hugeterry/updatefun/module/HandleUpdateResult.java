@@ -27,7 +27,7 @@ public class HandleUpdateResult implements Runnable {
         this.version = GetAppInfo.getAppVersionName(context);
     }
 
-    public static class Up_handler extends Handler {
+    private static class Up_handler extends Handler {
         WeakReference<Context> mActivityReference;
 
         public Up_handler(Context context) {
