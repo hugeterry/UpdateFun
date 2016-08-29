@@ -43,7 +43,6 @@ public class UpdateFunGO {
             Thread thread_update = new Thread(new HandleUpdateResult(context));
             thread_update.start();
         }
-
     }
 
     public static void showDownloadView(Context context) {
@@ -58,7 +57,6 @@ public class UpdateFunGO {
             download = new Download(context, builder);
             download.start();
         }
-
     }
 
     private static Notification.Builder notificationInit(Context context) {
