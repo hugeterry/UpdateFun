@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -20,6 +21,7 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 public class UpdateFunGO {
 
     private static Thread download;
+    private static Thread thread_update;
 
     private static volatile UpdateFunGO sInst = null;
 
@@ -40,7 +42,7 @@ public class UpdateFunGO {
     private UpdateFunGO(Context context) {
         DownloadKey.FROMACTIVITY = context;
         if (DownloadKey.TOShowDownloadView != 2) {
-            Thread thread_update = new Thread(new HandleUpdateResult(context));
+            thread_update = new Thread(new HandleUpdateResult(context));
             thread_update.start();
         }
     }
@@ -77,8 +79,7 @@ public class UpdateFunGO {
         if (DownloadKey.TOShowDownloadView == 2) {
             showDownloadView(context);
         } else if (DownloadKey.TOShowDownloadView == 1) {
-            if (sInst != null)
-                sInst = null;
+            if (sInst != null) sInst = null;
         }
     }
 
@@ -89,6 +90,7 @@ public class UpdateFunGO {
         if (DownloadKey.FROMACTIVITY != null) {
             DownloadKey.FROMACTIVITY = null;
         }
+        thread_update.interrupt();
     }
 
 }
