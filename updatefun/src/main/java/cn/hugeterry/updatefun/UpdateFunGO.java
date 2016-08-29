@@ -5,7 +5,6 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -46,7 +45,6 @@ public class UpdateFunGO {
         }
 
     }
-
 
     public static void showDownloadView(Context context) {
         DownloadKey.saveFileName = DownloadKey.savePath +
