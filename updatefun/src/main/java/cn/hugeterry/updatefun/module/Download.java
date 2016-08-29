@@ -52,10 +52,10 @@ public class Download extends Thread {
         handler = new Down_handler(context, builder, notificationManager);
     }
 
-    static class Down_handler extends Handler {
+    private static class Down_handler extends Handler {
         WeakReference<Context> mContextReference;
-        WeakReference<Notification.Builder> mBuilderReference;
-        WeakReference<NotificationManager> mNManagerReference;
+        Notification.Builder builder;
+        NotificationManager notificationManager;
 
         Down_handler(Context context) {
             mContextReference = new WeakReference<>(context);
@@ -63,20 +63,16 @@ public class Download extends Thread {
 
         Down_handler(Context context, Notification.Builder builder, NotificationManager notificationManager) {
             mContextReference = new WeakReference<>(context);
-            mBuilderReference = new WeakReference<>(builder);
-            mNManagerReference = new WeakReference<>(notificationManager);
+            this.builder = builder;
+            this.notificationManager = notificationManager;
         }
 
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void handleMessage(Message msg) {
             Context context = mContextReference.get();
-            Notification.Builder builder = null;
-            NotificationManager notificationManager = null;
-            if (UpdateKey.DialogOrNotification == 2) {
-                builder = mBuilderReference.get();
-                notificationManager = mNManagerReference.get();
-            }
+            Log.i("UpdateFun TAG", UpdateKey.DialogOrNotification + "");
+
             switch (msg.what) {
                 case DOWN_UPDATE:
                     if (UpdateKey.DialogOrNotification == 1) {
