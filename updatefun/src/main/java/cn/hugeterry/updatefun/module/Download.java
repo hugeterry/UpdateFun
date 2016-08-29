@@ -92,6 +92,8 @@ public class Download extends Thread {
                         notificationManager.notify(1115, builder.build());
                         notificationManager.cancel(1115);
                     }
+                    length = 0;
+                    count = 0;
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
                         Log.i("UpdateFun TAG", "APK路径:" + DownloadKey.saveFileName);
@@ -169,11 +171,18 @@ public class Download extends Thread {
                 }
                 fos.write(buf, 0, numread);
             } while (!DownloadKey.interceptFlag);// 点击取消就停止下载.
-
             fos.flush();
             fos.close();
             is.close();
             conn.disconnect();
+
+            if (DownloadKey.interceptFlag) {
+                Log.i("UpdateFun TAG", "interrupt");
+                length = 0;
+                count = 0;
+                DownloadKey.interceptFlag = false;
+                this.interrupt();
+            }
         } catch (IOException e3) {
             e3.printStackTrace();
         }
