@@ -10,6 +10,7 @@ import android.view.View;
 import cn.hugeterry.updatefun.UpdateFunGO;
 
 /**
+ * 手动更新界面示例
  * Created by hugeterry(http://hugeterry.cn)
  * Date: 16/8/28 21:52
  */
@@ -22,31 +23,11 @@ public class ManualUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manualupdate);
 
         initToolbar();
-
     }
 
-    private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
-        getSupportActionBar().setTitle("关于");
-    }
-
-    public void checkUpdate(View view){
-        Log.i("UpdateFun TAG","begin");
+    public void checkUpdate(View view) {
+        //手动更新onClick(),启动更新检测
         UpdateFunGO.init(this);
-        UpdateFunGO.onResume(this);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -60,4 +41,23 @@ public class ManualUpdateActivity extends AppCompatActivity {
         super.onStop();
         UpdateFunGO.onStop(this);
     }
+
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+        getSupportActionBar().setTitle("关于");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
