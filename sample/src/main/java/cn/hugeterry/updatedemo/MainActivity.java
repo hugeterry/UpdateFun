@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toUpdateView(View view) {
-        //跳转至手动更新Activity,还在奋斗中
+        //跳转至手动更新Activity
         Intent intent = new Intent(this, ManualUpdateActivity.class);
         startActivity(intent);
     }
