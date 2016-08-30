@@ -15,7 +15,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 ```
 dependencies {
-    compile 'cn.hugeterry.updatefun:updatefun:1.7.0'
+    compile 'cn.hugeterry.updatefun:updatefun:1.8.0'
 }
 ```
 
@@ -25,7 +25,7 @@ dependencies {
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
-  <version>1.7.0</version>
+  <version>1.8.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -61,6 +61,32 @@ UpdateFunGO.init(this);
 ```
 
 大功告成，好好享用吧
+
+##其他功能
+
+###手动更新（需1.8.0以上版本）
+
+请确保在你的app已添加依赖(见用法Step 1),
+并已经写上你fir.im账号的API_TOKEN以及APP的应用ID(见用法Step 2)
+
+在需要手动更新时调用:
+```
+UpdateFunGO.init(this);
+```
+并在手动更新的当前Activity添加上以下代码：
+```
+ @Override
+    protected void onResume() {
+        super.onResume();
+        UpdateFunGO.onResume(this);
+    }
+  @Override
+     protected void onStop() {
+         super.onStop();
+         UpdateFunGO.onStop(this);
+     }
+```
+即可实现手动更新
 
 ##Demo
 [http://fir.im/updatefun](http://fir.im/updatefun)
