@@ -70,8 +70,6 @@ public class Download extends Thread {
         @Override
         public void handleMessage(Message msg) {
             Context context = mContextReference.get();
-            Log.i("UpdateFun TAG", UpdateKey.DialogOrNotification + "");
-
             switch (msg.what) {
                 case DOWN_UPDATE:
                     if (UpdateKey.DialogOrNotification == 1) {
