@@ -41,7 +41,6 @@ public class Download extends Thread {
     private static int length;
     private static int count;
 
-
     public Download(Context context) {
         handler = new Down_handler(context);
     }
