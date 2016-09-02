@@ -11,8 +11,8 @@ import java.io.File;
  * Date: 16/8/18 16:52
  */
 public class InstallApk {
-    public static void startInstall(Context context, String filePath) {
-        File apkfile = new File(filePath);
+    public static void startInstall(Context context, File apkfile) {
+//        File apkfile = new File(filePath);
         if (!apkfile.exists()) {
             return;
         }

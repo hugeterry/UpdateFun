@@ -24,6 +24,7 @@ import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
 import cn.hugeterry.updatefun.utils.GetAppInfo;
 import cn.hugeterry.updatefun.utils.InstallApk;
+import cn.hugeterry.updatefun.utils.StorageUtils;
 import cn.hugeterry.updatefun.view.DownLoadDialog;
 
 /**
@@ -41,11 +42,17 @@ public class Download extends Thread {
     private static int length;
     private static int count;
 
+    private Context context;
+    private static File ApkFile;
+    private static File file;
+
     public Download(Context context) {
+        this.context = context;
         handler = new Down_handler(context);
     }
 
     public Download(Context context, Notification.Builder builder) {
+        this.context = context;
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         handler = new Down_handler(context, builder, notificationManager);
@@ -93,8 +100,8 @@ public class Download extends Thread {
                     count = 0;
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
-                        Log.i("UpdateFun TAG", "APK路径:" + DownloadKey.saveFileName);
-                        InstallApk.startInstall(context, DownloadKey.saveFileName);
+                        Log.i("UpdateFun TAG", "APK路径:" + ApkFile);
+                        InstallApk.startInstall(context, ApkFile);
                     }
                     break;
                 default:
@@ -142,12 +149,13 @@ public class Download extends Thread {
 
 
         try {
-            File file = new File(DownloadKey.savePath);
+            file = StorageUtils.getCacheDirectory(context);
+//            File file = new File(DownloadKey.savePath);
             if (!file.exists()) {
                 file.mkdir();
             }
             String apkFile = DownloadKey.saveFileName;
-            File ApkFile = new File(apkFile);
+            ApkFile = new File(file, apkFile);
             FileOutputStream fos = new FileOutputStream(ApkFile);
             long tempFileLength = file.length();
             byte buf[] = new byte[1024];
@@ -186,7 +194,7 @@ public class Download extends Thread {
     }
 
     private static boolean checkApk(Context context) {
-        String apkName = GetAppInfo.getAPKPackageName(context, DownloadKey.saveFileName);
+        String apkName = GetAppInfo.getAPKPackageName(context, file.toString() + "/" + DownloadKey.saveFileName);
         String appName = GetAppInfo.getAppPackageName(context);
         if (apkName.equals(appName)) {
             Log.i("UpdateFun TAG", "apk检验:包名相同,安装apk");

@@ -11,8 +11,8 @@ public class DownloadKey {
 
     public static Context FROMACTIVITY = null;
     public static int TOShowDownloadView = 0;
-    public static final String savePath = Environment.getExternalStorageDirectory() + "/UpdateFun/";
-    public static String saveFileName = savePath + "newversion.apk";
+//    public static final String savePath = Environment.getExternalStorageDirectory() + "/UpdateFun/";
+    public static String saveFileName =  "newversion.apk";
     public static String apkUrl = "";
     public static String changeLog = "";
     public static String version;
