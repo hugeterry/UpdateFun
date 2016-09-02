@@ -43,8 +43,7 @@ public class Download extends Thread {
     private static int count;
 
     private Context context;
-    private static File ApkFile;
-    private static File file;
+    private static File apkFile;
 
     public Download(Context context) {
         this.context = context;
@@ -100,8 +99,8 @@ public class Download extends Thread {
                     count = 0;
                     DownloadKey.TOShowDownloadView = 1;
                     if (checkApk(context)) {
-                        Log.i("UpdateFun TAG", "APK路径:" + ApkFile);
-                        InstallApk.startInstall(context, ApkFile);
+                        Log.i("UpdateFun TAG", "APK路径:" + apkFile);
+                        InstallApk.startInstall(context, apkFile);
                     }
                     break;
                 default:
@@ -149,14 +148,13 @@ public class Download extends Thread {
 
 
         try {
-            file = StorageUtils.getCacheDirectory(context);
-//            File file = new File(DownloadKey.savePath);
+            File file = StorageUtils.getCacheDirectory(context);
             if (!file.exists()) {
                 file.mkdir();
             }
-            String apkFile = DownloadKey.saveFileName;
-            ApkFile = new File(file, apkFile);
-            FileOutputStream fos = new FileOutputStream(ApkFile);
+
+            apkFile = new File(file, DownloadKey.saveFileName);
+            FileOutputStream fos = new FileOutputStream(apkFile);
             long tempFileLength = file.length();
             byte buf[] = new byte[1024];
             int times = 0; //这很重要
@@ -194,7 +192,7 @@ public class Download extends Thread {
     }
 
     private static boolean checkApk(Context context) {
-        String apkName = GetAppInfo.getAPKPackageName(context, file.toString() + "/" + DownloadKey.saveFileName);
+        String apkName = GetAppInfo.getAPKPackageName(context, apkFile.toString());
         String appName = GetAppInfo.getAppPackageName(context);
         if (apkName.equals(appName)) {
             Log.i("UpdateFun TAG", "apk检验:包名相同,安装apk");
