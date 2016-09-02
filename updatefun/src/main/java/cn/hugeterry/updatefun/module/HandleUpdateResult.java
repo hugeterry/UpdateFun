@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
@@ -42,6 +43,17 @@ public class HandleUpdateResult implements Runnable {
                     case 1:
                         showNoticeDialog(context);
                         break;
+                    case 2:
+                        if (DownloadKey.ISManual) {
+                            Toast.makeText(context, "网络不畅通", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case 3:
+                        Log.i("UpdateFun TAG", "DownloadKey.ISManual:" + DownloadKey.ISManual);
+                        if (DownloadKey.ISManual) {
+                            Toast.makeText(context, "版本已是最新", Toast.LENGTH_LONG).show();
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -72,7 +84,7 @@ public class HandleUpdateResult implements Runnable {
             up_handler.sendMessage(msg);
         } else {
             Log.i("UpdateFun TAG", "版本已是最新");
-            msg.arg1 = 2;
+            msg.arg1 = 3;
             up_handler.sendMessage(msg);
         }
     }

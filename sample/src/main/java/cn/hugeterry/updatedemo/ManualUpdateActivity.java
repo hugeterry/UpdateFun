@@ -26,7 +26,7 @@ public class ManualUpdateActivity extends AppCompatActivity {
 
     public void checkUpdate(View view) {
         //手动更新onClick(),启动更新检测
-        UpdateFunGO.init(this);
+        UpdateFunGO.manualStart(this);
     }
 
     @Override
