@@ -50,7 +50,6 @@ public class HandleUpdateResult implements Runnable {
                         }
                         break;
                     case 3:
-                        Log.i("UpdateFun TAG", "DownloadKey.ISManual:" + DownloadKey.ISManual);
                         if (DownloadKey.ISManual) {
                             DownloadKey.LoadManual = false;
                             Toast.makeText(context, "版本已是最新", Toast.LENGTH_LONG).show();
