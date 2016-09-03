@@ -47,6 +47,9 @@ public class DownLoadDialog extends Activity {
                 setResult(3, intent);
                 DownloadKey.TOShowDownloadView = 1;
                 DownloadKey.interceptFlag = true;
+                if (DownloadKey.ISManual) {
+                    DownloadKey.LoadManual = false;
+                }
                 finish();
             }
         });

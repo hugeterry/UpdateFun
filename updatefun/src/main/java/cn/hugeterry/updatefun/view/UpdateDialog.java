@@ -51,6 +51,9 @@ public class UpdateDialog extends Activity {
                 Intent intent = new Intent(UpdateDialog.this, context.getClass());
                 setResult(1, intent);
                 DownloadKey.TOShowDownloadView = 1;
+                if (DownloadKey.ISManual) {
+                    DownloadKey.LoadManual = false;
+                }
                 finish();
             }
         });

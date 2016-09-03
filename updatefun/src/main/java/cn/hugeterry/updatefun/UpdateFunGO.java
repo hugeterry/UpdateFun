@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import cn.hugeterry.updatefun.config.DownloadKey;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -26,7 +27,10 @@ public class UpdateFunGO {
 
     public static void manualStart(Context context) {
         DownloadKey.ISManual = true;
-        init(context);
+        if (!DownloadKey.LoadManual) {
+            DownloadKey.LoadManual = true;
+            new UpdateFunGO(context);
+        } else Toast.makeText(context, "正在更新中,请稍等", Toast.LENGTH_LONG).show();
     }
 
     public static UpdateFunGO init(Context context) {
@@ -97,6 +101,9 @@ public class UpdateFunGO {
         thread_update.interrupt();
         if (DownloadKey.ISManual) {
             DownloadKey.ISManual = false;
+        }
+        if (DownloadKey.LoadManual) {
+            DownloadKey.LoadManual = false;
         }
     }
 

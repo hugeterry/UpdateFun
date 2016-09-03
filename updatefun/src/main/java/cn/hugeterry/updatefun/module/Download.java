@@ -98,6 +98,9 @@ public class Download extends Thread {
                     length = 0;
                     count = 0;
                     DownloadKey.TOShowDownloadView = 1;
+                    if (DownloadKey.ISManual) {
+                        DownloadKey.LoadManual = false;
+                    }
                     if (checkApk(context)) {
                         Log.i("UpdateFun TAG", "APK路径:" + apkFile);
                         InstallApk.startInstall(context, apkFile);
