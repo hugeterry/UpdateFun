@@ -21,7 +21,7 @@ import cn.hugeterry.updatefun.config.UpdateKey;
  */
 public class Update extends Thread {
 
-    public String result;
+    private String result;
     private String url = "http://api.fir.im/apps/latest/" + UpdateKey.APP_ID
             + "?api_token=" + UpdateKey.API_TOKEN;
 
