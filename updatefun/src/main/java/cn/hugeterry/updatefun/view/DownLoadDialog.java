@@ -35,8 +35,7 @@ public class DownLoadDialog extends Activity {
         progressBar = (ProgressBar) findViewById(R.id.downloaddialog_progress);
         textView = (TextView) findViewById(R.id.downloaddialog_count);
 
-        if (DownloadKey.interceptFlag)
-            DownloadKey.interceptFlag = false;
+        if (DownloadKey.interceptFlag) DownloadKey.interceptFlag = false;
         new Download(this).start();
 
         close.setOnClickListener(new OnClickListener() {
