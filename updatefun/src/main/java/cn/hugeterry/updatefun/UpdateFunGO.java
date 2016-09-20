@@ -98,7 +98,9 @@ public class UpdateFunGO {
         if (DownloadKey.FROMACTIVITY != null) {
             DownloadKey.FROMACTIVITY = null;
         }
-        thread_update.interrupt();
+        if (thread_update != null) {
+            thread_update.interrupt();
+        }
         if (DownloadKey.ISManual) {
             DownloadKey.ISManual = false;
         }
