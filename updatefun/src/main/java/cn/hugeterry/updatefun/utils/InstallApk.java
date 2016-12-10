@@ -1,5 +1,6 @@
 package cn.hugeterry.updatefun.utils;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ public class InstallApk {
             return;
         }
         Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");
         context.startActivity(i);
