@@ -24,8 +24,6 @@ public class DownLoadDialog extends Activity {
     public ProgressBar progressBar;
     public TextView textView;
 
-    private Context mContext = DownloadKey.FROMACTIVITY;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +40,6 @@ public class DownLoadDialog extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(DownLoadDialog.this, mContext.getClass());
-                setResult(3, intent);
                 DownloadKey.TOShowDownloadView = 1;
                 DownloadKey.interceptFlag = true;
                 if (DownloadKey.ISManual) {

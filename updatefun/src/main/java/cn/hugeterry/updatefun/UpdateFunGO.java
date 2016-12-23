@@ -48,7 +48,6 @@ public class UpdateFunGO {
     }
 
     private UpdateFunGO(Context context) {
-        DownloadKey.FROMACTIVITY = context;
         if (DownloadKey.TOShowDownloadView != 2) {
             thread_update = new Thread(new HandleUpdateResult(context));
             thread_update.start();
@@ -94,9 +93,6 @@ public class UpdateFunGO {
     public static void onStop(Context context) {
         if (DownloadKey.TOShowDownloadView == 2 && UpdateKey.DialogOrNotification == 2) {
             download.interrupt();
-        }
-        if (DownloadKey.FROMACTIVITY != null) {
-            DownloadKey.FROMACTIVITY = null;
         }
         if (thread_update != null) {
             thread_update.interrupt();

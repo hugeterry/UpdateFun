@@ -9,7 +9,7 @@ import android.os.Environment;
  */
 public class DownloadKey {
 
-    public static Context FROMACTIVITY = null;
+//    public static Context FROMACTIVITY = null;
     public static Boolean ISManual = false;
     public static Boolean LoadManual = false;
     public static int TOShowDownloadView = 0;
