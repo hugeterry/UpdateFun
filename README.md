@@ -2,7 +2,8 @@
 
 UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir.im](http://fir.im/)上上传自己的APP后接入该库即可实现检查更新下载
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/hugeterry/UpdateDemo/blob/master/LICENSE.txt)
- [ ![Download](https://api.bintray.com/packages/hugeterry/update/UpdateFun/images/download.svg) ](https://bintray.com/hugeterry/update/UpdateFun/_latestVersion)
+[![Download](https://api.bintray.com/packages/hugeterry/update/UpdateFun/images/download.svg) ](https://bintray.com/hugeterry/update/UpdateFun/_latestVersion)
+</br>
 <img src="showUI/1.png" height="400"/>
 <img src="showUI/2.png" height="400"/>
 <img src="showUI/3.png" height="400"/>
