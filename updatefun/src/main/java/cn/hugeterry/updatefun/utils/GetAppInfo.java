@@ -37,7 +37,7 @@ public class GetAppInfo {
                 return "";
             }
         } catch (Exception e) {
-            Log.e("VersionInfo", "Exception", e);
+           e.printStackTrace();
         }
         return versionName;
     }
@@ -53,7 +53,6 @@ public class GetAppInfo {
             return info.loadIcon(pm);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-
         }
         return null;
     }
