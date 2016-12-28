@@ -8,8 +8,8 @@ import android.os.Environment;
  * Date: 16/7/21 15:56
  */
 public class DownloadKey {
-
-//    public static Context FROMACTIVITY = null;
+    @Deprecated
+    public static Context FROMACTIVITY = null;
     public static Boolean ISManual = false;
     public static Boolean LoadManual = false;
     public static int TOShowDownloadView = 0;
