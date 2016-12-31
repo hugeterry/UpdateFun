@@ -3,7 +3,6 @@
 /.idea/workspace.xml
 .DS_Store
 /build
-/captures
 # built application files
 *.apk
 *.ap_
