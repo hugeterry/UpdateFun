@@ -25,6 +25,7 @@ public class ManualUpdateActivity extends AppCompatActivity {
     }
 
     public void checkUpdate(View view) {
+        //请确保在主Activity已填上在http://fir.im/注册账号后获得的API_TOKEN以及APP的应用ID
         //手动更新onClick(),启动更新检测
         UpdateFunGO.manualStart(this);
     }
