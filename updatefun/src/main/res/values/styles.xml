@@ -8,12 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MyButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">#5c5bc0</item>
-        <item name="colorButtonNormal">#ec407a</item>
-    </style>
-
-    <style name="ActionButton">
+    <style name="UpdateButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:minWidth">56dp</item>
@@ -23,7 +18,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="MyDialogStyle" parent="AppTheme">
+    <style name="UpdateDialogStyle" parent="AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

@@ -11,6 +11,6 @@ public class UpdateKey {
     public final static int WITH_DIALOG  = 1;
     public final static int WITH_NOTIFITION = 2;
 
-    public static int DialogOrNotification = WITH_NOTIFITION;
+    public static int DialogOrNotification = WITH_NOTIFITION;//default
 
 }

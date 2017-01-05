@@ -85,14 +85,14 @@
 
             <Button
                 android:id="@+id/updatedialog_no"
-                style="@style/ActionButton"
+                style="@style/UpdateButton"
                 android:stateListAnimator="@null"
                 android:text="取消"
                 android:textColor="#DE000000" />
 
             <Button
                 android:id="@+id/updatedialog_yes"
-                style="@style/ActionButton"
+                style="@style/UpdateButton"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="12dp"
                 android:stateListAnimator="@null"

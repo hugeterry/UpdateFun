@@ -14,6 +14,7 @@ import cn.hugeterry.updatefun.UpdateFunGO;
  * Date: 16/8/28 21:52
  */
 public class ManualUpdateActivity extends AppCompatActivity {
+
     private Toolbar toolbar;
 
     @Override

@@ -64,7 +64,6 @@ public class HandleUpdateResult implements Runnable {
 
     @Override
     public void run() {
-        // 检测更新
         Update update = new Update();
         update.start();
 

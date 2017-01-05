@@ -13,10 +13,10 @@
         android:supportsRtl="true">
         <activity
             android:name=".view.DownLoadDialog"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/UpdateDialogStyle" />
         <activity
             android:name=".view.UpdateDialog"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/UpdateDialogStyle" />
     </application>
 
 </manifest>
