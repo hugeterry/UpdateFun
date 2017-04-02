@@ -5,14 +5,12 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/hugeterry/UpdateDemo/blob/master/LICENSE.txt)
 [![Download](https://api.bintray.com/packages/hugeterry/update/UpdateFun/images/download.svg) ](https://bintray.com/hugeterry/update/UpdateFun/_latestVersion)
 
-<img src="showUI/1.png" height="400"/>
-<img src="showUI/2.png" height="400"/>
-<img src="showUI/3.png" height="400"/>
+<img src="showUI/1.png" height="400"/>  <img src="showUI/2.png" height="400"/>  <img src="showUI/3.png" height="400"/>
 
 
-##用法
+## 用法
 
-###Step 1
+### Step 1
 
 在gradle文件中加入下面的依赖:
 
@@ -33,7 +31,7 @@ dependencies {
 </dependency>
 ```
 
-###Step 2
+### Step 2
 
 在主界面activity的onCreate()中加上以下语句进行初始化(请放在setContentView()方法的后面):
 
@@ -46,7 +44,7 @@ UpdateKey.APP_ID = "写上APP的应用ID";
 UpdateFunGO.init(this);
 ```
 
-###Step 3
+### Step 3
 
 在主界面Activity中加上以下语句：
 
@@ -65,9 +63,9 @@ UpdateFunGO.init(this);
 
 大功告成，好好享用吧
 
-##其他功能
+## 其他功能
 
-###手动更新（需1.8.4以上版本）[案例代码](sample/src/main/java/cn/hugeterry/updatedemo/ManualUpdateActivity.java)
+### 手动更新（需1.8.4以上版本）[案例代码](sample/src/main/java/cn/hugeterry/updatedemo/ManualUpdateActivity.java)
 
 请确保在你的app已添加依赖(见用法Step 1),
 并已经写上你fir.im账号的API_TOKEN以及APP的应用ID(见用法Step 2)
@@ -91,7 +89,7 @@ UpdateFunGO.manualStart(this);
 ```
 即可实现手动更新
 
-##Demo
+## Demo
 [http://fir.im/updatefun](http://fir.im/updatefun)
 
 
