@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <external-path path="Android/data/cn.hugeterry.updatefun/" name="files_root" />
-    <external-path path="." name="external_storage_root" />
+    <external-path
+        name="files_root"
+        path="Android/data/cn.hugeterry.updatefun/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+    <root-path
+        name="root_path"
+        path="." />
 </paths>

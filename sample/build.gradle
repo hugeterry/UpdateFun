@@ -10,6 +10,10 @@ android {
         targetSdkVersion 23
         versionCode 9
         versionName "1.6"
+
+
+        resValue "string", "updatefun_provider_file_authorities", "cn.hugeterry.updatedemo.fileprovider"
+
     }
     buildTypes {
         release {

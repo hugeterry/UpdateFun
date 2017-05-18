@@ -16,7 +16,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 ```
 dependencies {
-    compile 'cn.hugeterry.updatefun:updatefun:2.0.0'
+    compile 'cn.hugeterry.updatefun:updatefun:2.0.4'
 }
 ```
 
@@ -26,7 +26,7 @@ dependencies {
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
-  <version>2.0.2</version>
+  <version>2.0.4</version>
   <type>pom</type>
 </dependency>
 ```
@@ -61,7 +61,7 @@ UpdateFunGO.init(this);
      }
 ```
 
-### Step 4 (2.0.2以上版本必须加，兼容Android 7.0+,非Android 7.0的手机也要加)
+### Step 4 (2.0.4以上版本必须加，兼容Android 7.0+,非Android 7.0的手机也要加)
 
 在app文件夹下的build.gradle里添加:
 
