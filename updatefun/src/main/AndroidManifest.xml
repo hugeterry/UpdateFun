@@ -20,7 +20,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="cn.hugeterry.updatefun.fileprovider"
+            android:authorities="@string/updatefun_provider_file_authorities"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -26,7 +26,7 @@ dependencies {
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -60,6 +60,21 @@ UpdateFunGO.init(this);
          UpdateFunGO.onStop(this);
      }
 ```
+
+### Step 4 (2.0.2以上版本必须加，兼容Android 7.0+,非Android 7.0的手机也要加)
+
+在app文件夹下的build.gradle里添加:
+
+```
+android {
+    defaultConfig {
+        ...
+        resValue "string", "updatefun_provider_file_authorities", "<packageName>.fileprovider"
+    }
+}
+```
+
+`<packageName>`为你的应用包名</b>
 
 大功告成，好好享用吧
 

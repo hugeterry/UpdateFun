@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UpdateFun</string>
+    <string name="updatefun_provider_file_authorities">cn.hugeterry.updatefun.fileprovider</string>
 </resources>
