@@ -14,7 +14,6 @@ import cn.hugeterry.updatefun.R;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/8/18 16:52
  */
 public class InstallApk {
     public static void startInstall(Context context, File apkfile) {

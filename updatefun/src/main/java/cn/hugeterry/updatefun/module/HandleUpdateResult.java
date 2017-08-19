@@ -16,7 +16,6 @@ import cn.hugeterry.updatefun.view.UpdateDialog;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/8/19 10:44
  */
 public class HandleUpdateResult implements Runnable {
 

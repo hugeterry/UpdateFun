@@ -16,7 +16,6 @@ import cn.hugeterry.updatefun.utils.GetAppInfo;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/12 16:47
  */
 public class UpdateFunGO {
 

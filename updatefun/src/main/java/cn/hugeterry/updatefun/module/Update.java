@@ -17,7 +17,6 @@ import cn.hugeterry.updatefun.config.UpdateKey;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/13 14:38
  */
 public class Update extends Thread {
 

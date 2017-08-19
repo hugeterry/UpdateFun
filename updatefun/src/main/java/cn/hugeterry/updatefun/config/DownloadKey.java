@@ -5,7 +5,6 @@ import android.os.Environment;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/21 15:56
  */
 public class DownloadKey {
     @Deprecated

@@ -9,7 +9,6 @@ import android.util.Log;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/15 15:58
  */
 public class GetAppInfo {
     public static String getAppName(Context context) {

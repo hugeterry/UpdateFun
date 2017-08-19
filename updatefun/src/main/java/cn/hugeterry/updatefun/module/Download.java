@@ -29,7 +29,6 @@ import cn.hugeterry.updatefun.view.DownLoadDialog;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/15 16:41
  */
 public class Download extends Thread {
 

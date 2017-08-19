@@ -13,7 +13,6 @@ import cn.hugeterry.updatefun.R;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/16 19:25
  */
 public class UpdateDialog extends Activity {
 

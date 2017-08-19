@@ -16,7 +16,6 @@ import cn.hugeterry.updatefun.module.Download;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 16/7/18 13:32
  */
 
 public class DownLoadDialog extends Activity {

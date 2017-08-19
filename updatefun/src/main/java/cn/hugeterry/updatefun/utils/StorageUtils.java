@@ -10,12 +10,6 @@ import java.io.IOException;
 
 import static android.os.Environment.MEDIA_MOUNTED;
 
-/**
- * Provides application storage paths
- *
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- * @since 1.0.0
- */
 public class StorageUtils {
 
     private static final String EXTERNAL_STORAGE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
