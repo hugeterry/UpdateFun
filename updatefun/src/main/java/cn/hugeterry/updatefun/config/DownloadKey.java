@@ -1,7 +1,6 @@
 package cn.hugeterry.updatefun.config;
 
 import android.content.Context;
-import android.os.Environment;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
