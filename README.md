@@ -14,7 +14,7 @@ UpdateFun是一个[fir.im](http://fir.im/)的Android更新下载模块，在[fir
 
 在gradle文件中加入下面的依赖:
 
-```
+```groovy
 dependencies {
     compile 'cn.hugeterry.updatefun:updatefun:2.0.6'
 }
@@ -22,7 +22,7 @@ dependencies {
 
 如果你使用Maven，那么加入下面的依赖：
 
-```
+```xml
 <dependency>
   <groupId>cn.hugeterry.updatefun</groupId>
   <artifactId>updatefun</artifactId>
@@ -35,7 +35,7 @@ dependencies {
 
 在主界面activity的onCreate()中加上以下语句进行初始化(请放在setContentView()方法的后面):
 
-```
+```java
 UpdateKey.API_TOKEN = "写上你fir.im账号的API_TOKEN";
 UpdateKey.APP_ID = "写上APP的应用ID";
 //下载方式:
@@ -48,7 +48,7 @@ UpdateFunGO.init(this);
 
 在主界面Activity中加上以下语句：
 
-```
+```java
  @Override
     protected void onResume() {
         super.onResume();
@@ -65,7 +65,7 @@ UpdateFunGO.init(this);
 
 在app文件夹下的build.gradle里添加:
 
-```
+```groovy
 android {
     defaultConfig {
         ...
@@ -86,11 +86,11 @@ android {
 并已经写上你fir.im账号的API_TOKEN以及APP的应用ID(见用法Step 2)
 
 在需要手动更新时调用:
-```
+```java
 UpdateFunGO.manualStart(this);
 ```
 并在手动更新的当前Activity添加上以下代码：
-```
+```java
  @Override
     protected void onResume() {
         super.onResume();
