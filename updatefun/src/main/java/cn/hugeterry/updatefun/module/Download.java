@@ -85,7 +85,7 @@ public class Download extends Thread {
                                 .setContentText("下载进度:" + progress + "%");
                         notificationManager.notify(1115, builder.build());
                     }
-                    break;
+                    break;;
                 case DOWN_OVER:
                     if (UpdateKey.DialogOrNotification == 1) {
                         ((DownLoadDialog) context).finish();
